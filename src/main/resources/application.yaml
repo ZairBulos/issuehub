@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: issuehub
+
+  main:
+    banner-mode: off
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+  modulith:
+    events:
+      republish-outstanding-events-on-restart: true
+      completion-mode: archive
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: true
+
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: UTC
+
+server:
+  port: ${SERVER_PORT:8080}
+
+logging:
+  level:
+    root: info
+    org.springframework: info
