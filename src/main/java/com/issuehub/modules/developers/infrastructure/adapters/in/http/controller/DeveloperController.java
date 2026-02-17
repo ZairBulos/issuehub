@@ -21,7 +21,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class DeveloperController {
 
-    static final String DEVELOPERS = "/developer";
+    static final String DEVELOPERS = "/developers";
     static final String ME = "/me";
 
     private final CreateDeveloperUseCase createDeveloperUseCase;
