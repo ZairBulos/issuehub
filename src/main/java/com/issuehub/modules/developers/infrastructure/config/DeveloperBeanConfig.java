@@ -6,6 +6,7 @@ import com.issuehub.modules.developers.application.services.CreateDeveloperServi
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.support.TransactionOperations;
 
 @Configuration
 public class DeveloperBeanConfig {
@@ -13,9 +14,14 @@ public class DeveloperBeanConfig {
     @Bean
     public CreateDeveloperUseCase createDeveloperUseCase(
             DeveloperRepositoryPort repositoryPort,
-            EventPublisherPort publisherPort
+            EventPublisherPort publisherPort,
+            TransactionOperations transactionOperations
     ) {
-        return new CreateDeveloperService(repositoryPort, publisherPort);
+        var service = new CreateDeveloperService(repositoryPort, publisherPort);
+
+        return command -> transactionOperations.executeWithoutResult(status ->
+                service.execute(command)
+        );
     }
 
 }
