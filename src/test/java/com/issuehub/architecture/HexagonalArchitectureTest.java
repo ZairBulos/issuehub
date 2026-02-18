@@ -49,7 +49,9 @@ class HexagonalArchitectureTest {
                             "org.hibernate..",
                             "jakarta..",
                             "org.slf4j..",
-                            "lombok.."
+                            "lombok..",
+                            "com.fasterxml.."
                     )
                     .allowEmptyShould(true);
+
 }

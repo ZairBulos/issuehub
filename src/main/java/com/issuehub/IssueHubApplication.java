@@ -6,7 +6,8 @@ import org.springframework.modulith.Modulithic;
 
 @SpringBootApplication
 @Modulithic(
-		systemName = "IssueHub"
+		systemName = "IssueHub",
+		sharedModules = { "shared" }
 )
 public class IssueHubApplication {
 
