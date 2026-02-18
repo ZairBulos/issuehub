@@ -5,7 +5,6 @@ import com.issuehub.shared.domain.events.DomainEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,13 +15,11 @@ public class SpringEventPublisher implements EventPublisherPort {
     private final ApplicationEventPublisher publisher;
 
     @Override
-    @Transactional
     public void publish(DomainEvent event) {
         publisher.publishEvent(event);
     }
 
     @Override
-    @Transactional
     public void publishAll(List<DomainEvent> events) {
         events.forEach(publisher::publishEvent);
     }
