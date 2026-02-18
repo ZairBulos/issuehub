@@ -9,6 +9,7 @@ public record EmailVerificationCreated(
         EntityId verificationId,
         EntityId developerId,
         String developerEmail,
+        String verificationCode,
         Instant occurredOn
 ) implements DomainEvent {
 }
