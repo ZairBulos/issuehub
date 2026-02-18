@@ -1,5 +1,9 @@
 @ApplicationModule(
-        displayName = "Notifications"
+        displayName = "Notifications",
+        allowedDependencies = {
+                "shared",
+                "modules.auth::events"
+        }
 )
 package com.issuehub.modules.notifications;
 
