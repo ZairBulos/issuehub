@@ -52,7 +52,7 @@ class DeveloperControllerTest {
     }
 
     @Test
-    void createDeveloper_shouldReturn400BadRequestWhenEmailFormatIsInvalid() throws Exception {
+    void createDeveloper_shouldReturn400BadRequest_whenEmailFormatIsInvalid() throws Exception {
         var request = new CreateDeveloperRequest("not-an-email");
 
         mockMvc.perform(post(DeveloperController.DEVELOPERS)
@@ -62,7 +62,7 @@ class DeveloperControllerTest {
     }
 
     @Test
-    void createDeveloper_shouldReturn409ConflictWhenDeveloperAlreadyExists() throws Exception {
+    void createDeveloper_shouldReturn409Conflict_whenDeveloperAlreadyExists() throws Exception {
         var request = new CreateDeveloperRequest("exists@example.com");
 
         doThrow(new DeveloperAlreadyExistsException("Developer already exists"))
@@ -75,7 +75,7 @@ class DeveloperControllerTest {
     }
 
     @Test
-    void createDeveloper_shouldReturn400BadRequestWhenDomainValidationFails() throws Exception {
+    void createDeveloper_shouldReturn400BadRequest_whenDomainValidationFails() throws Exception {
         var request = new CreateDeveloperRequest("invalid@example.com");
 
         doThrow(new InvalidDeveloperEmailException("Invalid email"))
