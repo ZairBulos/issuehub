@@ -18,6 +18,10 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    static final String[] AUTH_WHITELIST = {
+        "/auth/verify-email"
+    };
+
     static final String[] DEVELOPER_WHITELIST = {
         "/developers"
     };
@@ -27,6 +31,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers(DEVELOPER_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
