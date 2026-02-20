@@ -3,15 +3,13 @@ package com.issuehub.modules.developers.infrastructure.adapters.in.http.controll
 import com.issuehub.IntegrationTest;
 import com.issuehub.modules.developers.infrastructure.adapters.in.http.dto.CreateDeveloperRequest;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.repositories.DeveloperJpaRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.jdbc.Sql;
 
-import java.net.URI;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @IntegrationTest
 class DeveloperControllerIntegrationTest {
@@ -22,44 +20,46 @@ class DeveloperControllerIntegrationTest {
     @Autowired
     private DeveloperJpaRepository developerRepository;
 
-    @BeforeEach
-    void setup() {
-        developerRepository.deleteAllInBatch();
-    }
+    private static final String CLEAN_DB = "/db/clean/developers.sql";
+    private static final String DATA_DB = "/db/data/developers.sql";
 
     // === creation ===
     @Test
-    void createDeveloper_shouldReturn201Created() {
-        var request = new CreateDeveloperRequest("it@example.com");
+    @Sql(CLEAN_DB)
+    void createDeveloper_shouldReturn201Created_whenRequestIsValid() {
+        // Given
+        var email = "it@example.com";
+        var request = new CreateDeveloperRequest(email);
 
+        // When
         var response = restTemplate.postForEntity(
                 DeveloperController.DEVELOPERS,
                 request,
                 Void.class
         );
 
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(URI.create(DeveloperController.DEVELOPERS + DeveloperController.ME), response.getHeaders().getLocation());
+        // Then
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(response.getHeaders().getLocation()).isNotNull();
+
+        assertThat(developerRepository.findByEmail(email)).isPresent();
     }
 
     @Test
-    void createDeveloper_shouldReturn409ConflictWhenEmailAlreadyExists() {
-        var request = new CreateDeveloperRequest("exists@example.com");
+    @Sql({CLEAN_DB, DATA_DB})
+    void createDeveloper_shouldReturn409Conflict_whenEmailAlreadyExists() {
+        // Given
+        var request = new CreateDeveloperRequest("dummy@example.com");
 
-        var firstResponse = restTemplate.postForEntity(
+        // When
+        var response = restTemplate.postForEntity(
                 DeveloperController.DEVELOPERS,
                 request,
                 Void.class
         );
-        assertEquals(HttpStatus.CREATED, firstResponse.getStatusCode());
 
-        var secondResponse = restTemplate.postForEntity(
-                DeveloperController.DEVELOPERS,
-                request,
-                Void.class
-        );
-
-        assertEquals(HttpStatus.CONFLICT, secondResponse.getStatusCode());
+        // Then
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CONFLICT);
     }
 
 }

@@ -4,7 +4,7 @@ import com.issuehub.modules.developers.application.dto.internal.CreateDeveloperC
 import com.issuehub.modules.developers.application.exceptions.DeveloperAlreadyExistsException;
 import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
-import com.issuehub.modules.developers.domain.events.DeveloperCreated;
+import com.issuehub.shared.domain.events.DeveloperCreated;
 import com.issuehub.modules.developers.domain.models.aggregates.Developer;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperProfile;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;

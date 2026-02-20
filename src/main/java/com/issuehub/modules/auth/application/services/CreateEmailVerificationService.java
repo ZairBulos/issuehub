@@ -6,7 +6,7 @@ import com.issuehub.modules.auth.domain.events.EmailVerificationCreated;
 import com.issuehub.modules.auth.domain.models.aggregates.EmailVerification;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationExpiration;
-import com.issuehub.modules.developers.domain.events.DeveloperCreated;
+import com.issuehub.shared.domain.events.DeveloperCreated;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
 
 import java.time.Instant;
