@@ -1,6 +1,5 @@
-package com.issuehub.modules.developers.domain.events;
+package com.issuehub.shared.domain.events;
 
-import com.issuehub.shared.domain.events.DomainEvent;
 import com.issuehub.shared.domain.model.EntityId;
 
 import java.time.Instant;

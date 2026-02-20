@@ -2,7 +2,7 @@ package com.issuehub.modules.auth.infrastructure.adapters.in.messaging;
 
 import com.issuehub.IntegrationTest;
 import com.issuehub.modules.auth.application.ports.in.internal.CreateEmailVerificationUseCase;
-import com.issuehub.modules.developers.domain.events.DeveloperCreated;
+import com.issuehub.shared.domain.events.DeveloperCreated;
 import com.issuehub.shared.domain.model.EntityId;
 import org.junit.jupiter.api.Test;
 import org.springframework.modulith.test.ApplicationModuleTest;

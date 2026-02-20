@@ -1,7 +1,7 @@
 package com.issuehub.modules.auth.application.services;
 
 import com.issuehub.modules.auth.application.ports.out.EmailVerificationRepositoryPort;
-import com.issuehub.modules.developers.domain.events.DeveloperCreated;
+import com.issuehub.shared.domain.events.DeveloperCreated;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
 import com.issuehub.shared.domain.model.EntityId;
 import org.junit.jupiter.api.BeforeEach;

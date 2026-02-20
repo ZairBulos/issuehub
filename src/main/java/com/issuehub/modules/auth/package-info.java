@@ -1,9 +1,5 @@
 @ApplicationModule(
-        displayName = "Auth",
-        allowedDependencies = {
-                "shared",
-                "modules.developers::events"
-        }
+        displayName = "Auth"
 )
 package com.issuehub.modules.auth;
 
