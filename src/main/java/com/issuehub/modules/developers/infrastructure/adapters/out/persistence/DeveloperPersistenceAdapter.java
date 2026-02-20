@@ -5,6 +5,7 @@ import com.issuehub.modules.developers.domain.models.aggregates.Developer;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.mappers.DeveloperMapper;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.repositories.DeveloperJpaRepository;
+import com.issuehub.shared.domain.model.EntityId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,13 @@ public class DeveloperPersistenceAdapter implements DeveloperRepositoryPort {
     @Transactional(readOnly = true)
     public Optional<Developer> findByEmail(DeveloperEmail email) {
         return repository.findByEmail(email.value())
+                .map(mapper::toDomain);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Developer> findById(EntityId id) {
+        return repository.findById(id.value())
                 .map(mapper::toDomain);
     }
 
