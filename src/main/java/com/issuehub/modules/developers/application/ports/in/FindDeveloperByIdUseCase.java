@@ -5,6 +5,6 @@ import com.issuehub.shared.domain.model.EntityId;
 
 import java.util.Optional;
 
-public interface FindDeveloperUseCase {
+public interface FindDeveloperByIdUseCase {
     Optional<DeveloperView> execute(EntityId developerId);
 }

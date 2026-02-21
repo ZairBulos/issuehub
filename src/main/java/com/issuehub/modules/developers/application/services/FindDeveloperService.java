@@ -1,13 +1,13 @@
 package com.issuehub.modules.developers.application.services;
 
 import com.issuehub.modules.developers.application.dto.DeveloperView;
-import com.issuehub.modules.developers.application.ports.in.FindDeveloperUseCase;
+import com.issuehub.modules.developers.application.ports.in.FindDeveloperByIdUseCase;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
 import com.issuehub.shared.domain.model.EntityId;
 
 import java.util.Optional;
 
-public class FindDeveloperService implements FindDeveloperUseCase {
+public class FindDeveloperService implements FindDeveloperByIdUseCase {
 
     private final DeveloperRepositoryPort repositoryPort;
 
