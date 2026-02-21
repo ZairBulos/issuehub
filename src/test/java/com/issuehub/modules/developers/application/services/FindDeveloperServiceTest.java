@@ -2,6 +2,7 @@ package com.issuehub.modules.developers.application.services;
 
 import com.issuehub.modules.developers.application.dto.DeveloperView;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
+import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
 import com.issuehub.shared.domain.model.EntityId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -49,6 +50,37 @@ class FindDeveloperServiceTest {
 
         // When
         var result = developerService.execute(developerId);
+
+        // Then
+        assertThat(result).isEmpty();
+    }
+
+    // === by email ===
+    @Test
+    void shouldReturnDeveloperViewByEmail() {
+        // Given
+        var developerEmail = new DeveloperEmail("view@example.com");
+        var view = new DeveloperView(EntityId.generate(), "view@example.com", false, "blocked");
+
+        when(repositoryPort.findViewByEmail(developerEmail)).thenReturn(Optional.of(view));
+
+        // When
+        var result = developerService.execute(developerEmail.value());
+
+        // Then
+        assertThat(result).isPresent();
+        assertThat(result.orElseThrow().isBlocked()).isTrue();
+    }
+
+    @Test
+    void shouldReturnEmptyWhenDeveloperDoesNotExistByEmail() {
+        // Given
+        var developerEmail = new DeveloperEmail("no_exists@example.com");
+
+        when(repositoryPort.findViewByEmail(developerEmail)).thenReturn(Optional.empty());
+
+        // When
+        var result = developerService.execute(developerEmail.value());
 
         // Then
         assertThat(result).isEmpty();
