@@ -42,6 +42,13 @@ public class DeveloperPersistenceAdapter implements DeveloperRepositoryPort {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Optional<DeveloperView> findViewByEmail(DeveloperEmail email) {
+        return repository.findProjectedByEmail(email.value())
+                .map(mapper::toView);
+    }
+
+    @Override
     public void save(Developer developer) {
         repository.save(mapper.toJpaEntity(developer));
     }

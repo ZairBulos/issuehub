@@ -11,5 +11,6 @@ public interface DeveloperRepositoryPort {
     Optional<Developer> findByEmail(DeveloperEmail email);
     Optional<Developer> findById(EntityId id);
     Optional<DeveloperView> findViewById(EntityId id);
+    Optional<DeveloperView> findViewByEmail(DeveloperEmail email);
     void save(Developer developer);
 }

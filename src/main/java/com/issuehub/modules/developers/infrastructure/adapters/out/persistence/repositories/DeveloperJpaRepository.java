@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface DeveloperJpaRepository extends JpaRepository<DeveloperJpaEntity, UUID> {
     Optional<DeveloperJpaEntity> findByEmail(String email);
     Optional<DeveloperProjection> findProjectedById(UUID id);
+    Optional<DeveloperProjection> findProjectedByEmail(String email);
 }
