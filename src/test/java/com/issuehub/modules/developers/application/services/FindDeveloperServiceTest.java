@@ -23,11 +23,12 @@ class FindDeveloperServiceTest {
     @InjectMocks
     private FindDeveloperService developerService;
 
+    // === by id ===
     @Test
-    void shouldReturnsDeveloperView() {
+    void shouldReturnDeveloperViewById() {
         // Given
-        var view = new DeveloperView(EntityId.generate(), "view@example.com", false, "active");
-        var developerId = view.id();
+        var developerId = EntityId.generate();
+        var view = new DeveloperView(developerId, "view@example.com", false, "active");
 
         when(repositoryPort.findViewById(developerId)).thenReturn(Optional.of(view));
 
@@ -40,7 +41,7 @@ class FindDeveloperServiceTest {
     }
 
     @Test
-    void shouldReturnsEmptyWhenDeveloperDoesNotExist() {
+    void shouldReturnEmptyWhenDeveloperDoesNotExistById() {
         // Given
         var developerId = EntityId.generate();
 
