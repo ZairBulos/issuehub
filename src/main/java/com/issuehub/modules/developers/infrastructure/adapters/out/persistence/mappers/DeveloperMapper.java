@@ -1,11 +1,13 @@
 package com.issuehub.modules.developers.infrastructure.adapters.out.persistence.mappers;
 
+import com.issuehub.modules.developers.application.dto.DeveloperView;
 import com.issuehub.modules.developers.domain.models.aggregates.Developer;
 import com.issuehub.modules.developers.domain.models.enums.DeveloperStatus;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperProfile;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.entities.DeveloperJpaEntity;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.entities.DeveloperProfileEmbeddable;
+import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.projections.DeveloperProjection;
 import com.issuehub.shared.domain.model.EntityId;
 import org.springframework.stereotype.Component;
 
@@ -33,6 +35,15 @@ public class DeveloperMapper {
                 toDomainProfile(entity.getProfile()),
                 entity.getCreatedAt(),
                 entity.getUpdatedAt()
+        );
+    }
+
+    public DeveloperView toView(DeveloperProjection projection) {
+        return new DeveloperView(
+                new EntityId(projection.id()),
+                projection.email(),
+                projection.isVerified(),
+                projection.status()
         );
     }
 

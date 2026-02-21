@@ -1,9 +1,11 @@
 package com.issuehub.modules.developers.infrastructure.config;
 
+import com.issuehub.modules.developers.application.ports.in.FindDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.in.internal.VerifyDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
 import com.issuehub.modules.developers.application.services.CreateDeveloperService;
+import com.issuehub.modules.developers.application.services.FindDeveloperService;
 import com.issuehub.modules.developers.application.services.VerifyDeveloperService;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +38,11 @@ public class DeveloperBeanConfig {
         return command -> transactionOperations.executeWithoutResult(status ->
                 service.execute(command)
         );
+    }
+
+    @Bean
+    public FindDeveloperUseCase findDeveloperUseCase(DeveloperRepositoryPort repositoryPort) {
+        return new FindDeveloperService(repositoryPort);
     }
 
 }

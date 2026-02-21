@@ -1,5 +1,6 @@
 package com.issuehub.modules.developers.infrastructure.adapters.out.persistence;
 
+import com.issuehub.modules.developers.application.dto.DeveloperView;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
 import com.issuehub.modules.developers.domain.models.aggregates.Developer;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
@@ -31,6 +32,13 @@ public class DeveloperPersistenceAdapter implements DeveloperRepositoryPort {
     public Optional<Developer> findById(EntityId id) {
         return repository.findById(id.value())
                 .map(mapper::toDomain);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<DeveloperView> findViewById(EntityId id) {
+        return repository.findProjectedById(id.value())
+                .map(mapper::toView);
     }
 
     @Override
