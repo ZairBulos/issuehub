@@ -1,0 +1,56 @@
+package com.issuehub.modules.developers.application.services;
+
+import com.issuehub.modules.developers.application.dto.DeveloperView;
+import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
+import com.issuehub.shared.domain.model.EntityId;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class FindDeveloperServiceTest {
+
+    @Mock
+    private DeveloperRepositoryPort repositoryPort;
+
+    @InjectMocks
+    private FindDeveloperService developerService;
+
+    @Test
+    void shouldReturnsDeveloperView() {
+        // Given
+        var view = new DeveloperView(EntityId.generate(), "view@example.com", false, "active");
+        var developerId = view.id();
+
+        when(repositoryPort.findViewById(developerId)).thenReturn(Optional.of(view));
+
+        // When
+        var result = developerService.execute(developerId);
+
+        // Then
+        assertThat(result).isPresent();
+        assertThat(result.orElseThrow().isActive()).isTrue();
+    }
+
+    @Test
+    void shouldReturnsEmptyWhenDeveloperDoesNotExist() {
+        // Given
+        var developerId = EntityId.generate();
+
+        when(repositoryPort.findViewById(developerId)).thenReturn(Optional.empty());
+
+        // When
+        var result = developerService.execute(developerId);
+
+        // Then
+        assertThat(result).isEmpty();
+    }
+
+}
