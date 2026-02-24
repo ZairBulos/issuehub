@@ -1,8 +1,8 @@
 package com.issuehub.modules.auth.domain.exceptions;
 
-import com.issuehub.shared.application.exceptions.ApplicationException;
+import com.issuehub.shared.domain.exceptions.DomainException;
 
-public class LoginCodeExpiredException extends ApplicationException {
+public class LoginCodeExpiredException extends DomainException {
 
     public LoginCodeExpiredException(String message) {
         super(message);
