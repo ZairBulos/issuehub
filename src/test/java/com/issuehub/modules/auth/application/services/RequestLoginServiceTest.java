@@ -2,6 +2,7 @@ package com.issuehub.modules.auth.application.services;
 
 import com.issuehub.modules.auth.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotFoundException;
+import com.issuehub.modules.auth.application.exceptions.AccountNotVerifiedException;
 import com.issuehub.modules.auth.application.ports.out.LoginVerificationRepositoryPort;
 import com.issuehub.modules.developers.application.dto.DeveloperView;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
@@ -45,7 +46,7 @@ class RequestLoginServiceTest {
     void shouldSaveLoginVerificationAndPublishEvent() {
         // Given
         var email = "test@example.com";
-        var developer = new DeveloperView(EntityId.generate(), email, false, "active");
+        var developer = new DeveloperView(EntityId.generate(), email, true, "active");
 
         when(findDeveloperByEmailUseCase.execute(email)).thenReturn(Optional.of(developer));
 
@@ -80,6 +81,19 @@ class RequestLoginServiceTest {
         // When/Then
         assertThatThrownBy(() -> requestLoginService.execute(email))
                 .isInstanceOf(AccountBlockedException.class);
+    }
+
+    @Test
+    void shouldThrowExceptionWhenDeveloperIsNotVerified() {
+        // Given
+        var email = "not_verified@example.com";
+        var notVerifiedDeveloper = new DeveloperView(EntityId.generate(), email, false, "active");
+
+        when(findDeveloperByEmailUseCase.execute(email)).thenReturn(Optional.of(notVerifiedDeveloper));
+
+        // When/Then
+        assertThatThrownBy(() -> requestLoginService.execute(email))
+                .isInstanceOf(AccountNotVerifiedException.class);
     }
 
 }
