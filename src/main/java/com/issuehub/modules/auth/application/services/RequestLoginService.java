@@ -2,6 +2,7 @@ package com.issuehub.modules.auth.application.services;
 
 import com.issuehub.modules.auth.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotFoundException;
+import com.issuehub.modules.auth.application.exceptions.AccountNotVerifiedException;
 import com.issuehub.modules.auth.application.ports.in.internal.RequestLoginUseCase;
 import com.issuehub.modules.auth.application.ports.out.LoginVerificationRepositoryPort;
 import com.issuehub.modules.auth.domain.events.LoginVerificationCreated;
@@ -42,6 +43,10 @@ public class RequestLoginService implements RequestLoginUseCase {
         // RN: Developer must not be blocked
         if (developer.isBlocked())
             throw new AccountBlockedException("Account is blocked " + email);
+
+        // RN: Developer must be verified
+        if (!developer.isVerified())
+            throw new AccountNotVerifiedException("Account is not verified " + email);
 
         // RN: Generate and hash verification code
         var code = LoginCode.generate();
