@@ -1,5 +1,6 @@
 package com.issuehub.modules.developers.infrastructure.config;
 
+import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByIdUseCase;
 import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.in.internal.VerifyDeveloperUseCase;
@@ -42,6 +43,11 @@ public class DeveloperBeanConfig {
 
     @Bean
     public FindDeveloperByIdUseCase findDeveloperByIdUseCase(DeveloperRepositoryPort repositoryPort) {
+        return new FindDeveloperService(repositoryPort);
+    }
+
+    @Bean
+    public FindDeveloperByEmailUseCase findDeveloperByEmailUseCase(DeveloperRepositoryPort repositoryPort) {
         return new FindDeveloperService(repositoryPort);
     }
 
