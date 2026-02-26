@@ -3,8 +3,8 @@ package com.issuehub.modules.developers.infrastructure.adapters.out.persistence.
 import java.util.UUID;
 
 public interface DeveloperProjection {
-    UUID id();
-    String email();
-    Boolean isVerified();
-    String status();
+    UUID getId();
+    String getEmail();
+    Boolean getIsVerified();
+    String getStatus();
 }

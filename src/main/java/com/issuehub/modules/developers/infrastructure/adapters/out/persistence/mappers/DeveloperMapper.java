@@ -40,10 +40,10 @@ public class DeveloperMapper {
 
     public DeveloperView toView(DeveloperProjection projection) {
         return new DeveloperView(
-                new EntityId(projection.id()),
-                projection.email(),
-                projection.isVerified(),
-                projection.status()
+                new EntityId(projection.getId()),
+                projection.getEmail(),
+                projection.getIsVerified(),
+                projection.getStatus()
         );
     }
 
