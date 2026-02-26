@@ -2,12 +2,14 @@ package com.issuehub.modules.auth.infrastructure.adapters.in.messaging;
 
 import com.issuehub.IntegrationTest;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.repositories.EmailVerificationJpaRepository;
+import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.shared.domain.events.DeveloperCreated;
 import com.issuehub.shared.domain.model.EntityId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.modulith.test.Scenario;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.Instant;
@@ -18,6 +20,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @IntegrationTest
 @ApplicationModuleTest
 class DeveloperCreatedListenerIntegrationTest {
+
+    @MockitoBean
+    private FindDeveloperByEmailUseCase findDeveloperByEmailUseCase;
 
     @Autowired
     private EmailVerificationJpaRepository emailVerificationRepository;
