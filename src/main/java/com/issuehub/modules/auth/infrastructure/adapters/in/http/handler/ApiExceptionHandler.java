@@ -1,5 +1,8 @@
 package com.issuehub.modules.auth.infrastructure.adapters.in.http.handler;
 
+import com.issuehub.modules.auth.application.exceptions.AccountBlockedException;
+import com.issuehub.modules.auth.application.exceptions.AccountNotFoundException;
+import com.issuehub.modules.auth.application.exceptions.AccountNotVerifiedException;
 import com.issuehub.modules.auth.domain.exceptions.InvalidVerificationCodeException;
 import com.issuehub.modules.auth.domain.exceptions.VerificationCodeAlreadyUsedException;
 import com.issuehub.modules.auth.domain.exceptions.VerificationCodeExpiredException;
@@ -50,6 +53,43 @@ public class ApiExceptionHandler {
         return ErrorResponse.fromException(
                 ex,
                 HttpStatus.BAD_REQUEST.value(),
+                request.getRequestURI()
+        );
+    }
+
+    // === APPLICATION ===
+    @ExceptionHandler(AccountNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleAccountNotFoundException(AccountNotFoundException ex, HttpServletRequest request) {
+        log.warn("Account not found at [{}]: {}", request.getRequestURI(), ex.getMessage());
+
+        return ErrorResponse.fromException(
+                ex,
+                HttpStatus.NOT_FOUND.value(),
+                request.getRequestURI()
+        );
+    }
+
+    @ExceptionHandler(AccountBlockedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponse handleAccountBlockedException(AccountBlockedException ex, HttpServletRequest request) {
+        log.warn("Account blocked at [{}]: {}", request.getRequestURI(), ex.getMessage());
+
+        return ErrorResponse.fromException(
+                ex,
+                HttpStatus.FORBIDDEN.value(),
+                request.getRequestURI()
+        );
+    }
+
+    @ExceptionHandler(AccountNotVerifiedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponse handleAccountNotVerifiedException(AccountNotVerifiedException ex, HttpServletRequest request) {
+        log.warn("Account not verified at [{}]: {}", request.getRequestURI(), ex.getMessage());
+
+        return ErrorResponse.fromException(
+                ex,
+                HttpStatus.FORBIDDEN.value(),
                 request.getRequestURI()
         );
     }
