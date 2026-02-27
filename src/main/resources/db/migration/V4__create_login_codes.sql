@@ -2,9 +2,9 @@ CREATE TABLE IF NOT EXISTS login_verifications (
     id              UUID NOT NULL,
     developer_id    UUID NOT NULL,
     hashed_code     VARCHAR(255) NOT NULL,
-    used_at         TIMESTAMP NULL,
-    expires_at      TIMESTAMP NOT NULL,
-    created_at      TIMESTAMP NOT NULL DEFAULT now(),
+    used_at         TIMESTAMPTZ NULL,
+    expires_at      TIMESTAMPTZ NOT NULL,
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
 
     PRIMARY KEY (id),
     CONSTRAINT fk_login_verifications_developer
