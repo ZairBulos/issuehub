@@ -13,7 +13,7 @@ public class LoginVerificationCreatedListener {
     public void on(LoginVerificationCreated event) {
         log.info(
                 "Received LoginVerificationCreated event for developer {} with code {}",
-                event.developerId(),
+                event.developerId().value(),
                 event.verificationCode()
         );
     }
