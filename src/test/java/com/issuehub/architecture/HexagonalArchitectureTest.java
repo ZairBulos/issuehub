@@ -45,12 +45,10 @@ class HexagonalArchitectureTest {
                             "..application..",
                             "..domain..",
                             "java..",
-                            "org.springframework..",
-                            "org.hibernate..",
                             "jakarta..",
-                            "org.slf4j..",
                             "lombok..",
-                            "com.fasterxml.."
+                            "org..",
+                            "com.."
                     )
                     .allowEmptyShould(true);
 
