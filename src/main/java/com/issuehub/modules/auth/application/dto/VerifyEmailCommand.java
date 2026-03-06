@@ -1,4 +1,4 @@
-package com.issuehub.modules.auth.application.dto.internal;
+package com.issuehub.modules.auth.application.dto;
 
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
 import com.issuehub.shared.domain.model.EntityId;

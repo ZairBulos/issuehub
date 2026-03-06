@@ -1,12 +1,12 @@
 package com.issuehub.modules.auth.infrastructure.adapters.in.http.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.issuehub.modules.auth.application.dto.internal.VerifyEmailCommand;
+import com.issuehub.modules.auth.application.dto.VerifyEmailCommand;
 import com.issuehub.modules.auth.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotVerifiedException;
-import com.issuehub.modules.auth.application.ports.in.internal.RequestLoginUseCase;
-import com.issuehub.modules.auth.application.ports.in.internal.VerifyEmailUseCase;
+import com.issuehub.modules.auth.application.ports.in.RequestLoginUseCase;
+import com.issuehub.modules.auth.application.ports.in.VerifyEmailUseCase;
 import com.issuehub.modules.auth.domain.exceptions.InvalidVerificationCodeException;
 import com.issuehub.modules.auth.domain.exceptions.VerificationCodeAlreadyUsedException;
 import com.issuehub.modules.auth.domain.exceptions.VerificationCodeExpiredException;

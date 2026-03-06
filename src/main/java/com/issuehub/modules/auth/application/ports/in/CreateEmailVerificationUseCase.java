@@ -1,4 +1,4 @@
-package com.issuehub.modules.auth.application.ports.in.internal;
+package com.issuehub.modules.auth.application.ports.in;
 
 import com.issuehub.shared.domain.events.DeveloperCreated;
 

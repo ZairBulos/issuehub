@@ -3,7 +3,7 @@ package com.issuehub.modules.auth.application.services;
 import com.issuehub.modules.auth.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotVerifiedException;
-import com.issuehub.modules.auth.application.ports.in.internal.RequestLoginUseCase;
+import com.issuehub.modules.auth.application.ports.in.RequestLoginUseCase;
 import com.issuehub.modules.auth.application.ports.out.LoginVerificationRepositoryPort;
 import com.issuehub.modules.auth.domain.events.LoginVerificationCreated;
 import com.issuehub.modules.auth.domain.models.aggregates.LoginVerification;

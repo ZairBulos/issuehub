@@ -1,7 +1,7 @@
 package com.issuehub.modules.auth.infrastructure.config;
 
-import com.issuehub.modules.auth.application.ports.in.internal.CreateEmailVerificationUseCase;
-import com.issuehub.modules.auth.application.ports.in.internal.VerifyEmailUseCase;
+import com.issuehub.modules.auth.application.ports.in.CreateEmailVerificationUseCase;
+import com.issuehub.modules.auth.application.ports.in.VerifyEmailUseCase;
 import com.issuehub.modules.auth.application.ports.out.EmailVerificationRepositoryPort;
 import com.issuehub.modules.auth.application.services.CreateEmailVerificationService;
 import com.issuehub.modules.auth.application.services.VerifyEmailService;

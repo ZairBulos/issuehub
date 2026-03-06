@@ -1,8 +1,8 @@
 package com.issuehub.modules.auth.infrastructure.adapters.in.http.controller;
 
-import com.issuehub.modules.auth.application.dto.internal.VerifyEmailCommand;
-import com.issuehub.modules.auth.application.ports.in.internal.RequestLoginUseCase;
-import com.issuehub.modules.auth.application.ports.in.internal.VerifyEmailUseCase;
+import com.issuehub.modules.auth.application.dto.VerifyEmailCommand;
+import com.issuehub.modules.auth.application.ports.in.RequestLoginUseCase;
+import com.issuehub.modules.auth.application.ports.in.VerifyEmailUseCase;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
 import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.RequestLoginRequest;
 import com.issuehub.shared.domain.model.EntityId;

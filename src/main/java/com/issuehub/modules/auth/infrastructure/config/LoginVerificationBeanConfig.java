@@ -1,6 +1,6 @@
 package com.issuehub.modules.auth.infrastructure.config;
 
-import com.issuehub.modules.auth.application.ports.in.internal.RequestLoginUseCase;
+import com.issuehub.modules.auth.application.ports.in.RequestLoginUseCase;
 import com.issuehub.modules.auth.application.ports.out.LoginVerificationRepositoryPort;
 import com.issuehub.modules.auth.application.services.RequestLoginService;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
