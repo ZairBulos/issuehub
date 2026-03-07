@@ -13,7 +13,7 @@ public class EmailVerificationCreatedListener {
     public void on(EmailVerificationCreated event) {
         log.info(
                 "Received EmailVerificationCreated event for developer {} with code {}",
-                event.developerId(),
+                event.developerId().value(),
                 event.verificationCode()
         );
     }

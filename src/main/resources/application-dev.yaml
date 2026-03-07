@@ -18,3 +18,10 @@ spring:
   docker:
     compose:
       enabled: true
+
+jwt:
+  secret: ${JWT_SECRET:secret}
+  issuer: ${JWT_ISSUER:issuehub}
+  audience: ${JWT_AUDIENCE:issuehub-api}
+  accessTokenExpiration: ${JWT_ACCESS_TOKEN_EXPIRATION:PT15M}
+  refreshTokenExpiration: ${JWT_REFRESH_TOKEN_EXPIRATION:P7D}

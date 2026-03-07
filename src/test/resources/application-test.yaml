@@ -22,6 +22,14 @@ spring:
     compose:
       enabled: false
 
+jwt:
+  secret: secret
+  issuer: test
+  audience: test-api
+  accessTokenExpiration: PT15M
+  refreshTokenExpiration: P7D
+
+
 logging:
   level:
     root: warn

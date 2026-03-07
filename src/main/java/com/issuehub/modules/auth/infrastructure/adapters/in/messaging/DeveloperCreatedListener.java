@@ -1,6 +1,6 @@
 package com.issuehub.modules.auth.infrastructure.adapters.in.messaging;
 
-import com.issuehub.modules.auth.application.ports.in.internal.CreateEmailVerificationUseCase;
+import com.issuehub.modules.auth.application.ports.in.CreateEmailVerificationUseCase;
 import com.issuehub.shared.domain.events.DeveloperCreated;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
