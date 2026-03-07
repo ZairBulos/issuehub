@@ -22,7 +22,8 @@ public class SecurityConfig {
 
     static final String[] AUTH_WHITELIST = {
             "/auth/verify-email",
-            "/auth/request-login"
+            "/auth/request-login",
+            "/auth/login"
     };
 
     static final String[] DEVELOPER_WHITELIST = {

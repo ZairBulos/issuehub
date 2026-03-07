@@ -61,7 +61,7 @@ public class LoginVerification extends AggregateRoot {
             throw new LoginCodeExpiredException("Login code has expired");
 
         if (!hashedCode.matches(code.value(), verifier))
-            throw new InvalidLoginCodeException("Invalid login code");
+            throw new InvalidLoginCodeException("Invalid credentials");
 
         this.usedAt = Instant.now();
     }

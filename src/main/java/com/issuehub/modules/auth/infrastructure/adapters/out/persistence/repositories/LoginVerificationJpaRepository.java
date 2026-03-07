@@ -7,9 +7,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface LoginVerificationJpaRepository extends JpaRepository<LoginVerificationJpaEntity, UUID> {
+
+    @Query("""
+            SELECT v FROM LoginVerificationJpaEntity v
+            WHERE v.developerId = :developerId
+              AND v.usedAt IS NULL
+            ORDER BY v.createdAt DESC
+            LIMIT 1
+            """)
+    Optional<LoginVerificationJpaEntity> findActiveByDeveloperId(@Param("developerId") UUID developerId);
 
     @Modifying
     @Query(
