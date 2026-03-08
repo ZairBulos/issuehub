@@ -7,6 +7,7 @@ import com.issuehub.modules.developers.application.ports.in.internal.CreateDevel
 import com.issuehub.modules.developers.domain.exceptions.InvalidDeveloperEmailException;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
 import com.issuehub.modules.developers.infrastructure.adapters.in.http.dto.CreateDeveloperRequest;
+import com.issuehub.shared.application.ports.security.TokenProviderPort;
 import com.issuehub.shared.infrastructure.config.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ class DeveloperControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockitoBean
+    private TokenProviderPort tokenProviderPort;
 
     @MockitoBean
     private CreateDeveloperUseCase createDeveloperUseCase;
