@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @IntegrationTest
 @ApplicationModuleTest
-class DeveloperCreatedListenerIntegrationTest {
+class DeveloperCreatedListenerIT {
 
     @MockitoBean
     private FindDeveloperByEmailUseCase findDeveloperByEmailUseCase;

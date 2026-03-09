@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @IntegrationTest
 @Transactional // Necessary
-class LoginVerificationJpaRepositoryIntegrationTest {
+class LoginVerificationJpaRepositoryIT {
 
     @Autowired
     private LoginVerificationJpaRepository repository;

@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @IntegrationTest
 @ApplicationModuleTest
-public class EmailVerifiedListenerIntegrationTest {
+class EmailVerifiedListenerIT {
 
     @Autowired
     private DeveloperJpaRepository developerRepository;

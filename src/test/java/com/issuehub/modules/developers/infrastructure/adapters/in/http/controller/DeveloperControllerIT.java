@@ -12,7 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @IntegrationTest
-class DeveloperControllerIntegrationTest {
+class DeveloperControllerIT {
 
     @Autowired
     private TestRestTemplate restTemplate;

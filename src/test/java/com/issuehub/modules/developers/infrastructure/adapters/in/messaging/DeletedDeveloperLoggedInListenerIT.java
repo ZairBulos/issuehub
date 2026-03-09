@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @IntegrationTest
 @ApplicationModuleTest
-class DeletedDeveloperLoggedInListenerIntegrationTest {
+class DeletedDeveloperLoggedInListenerIT {
 
     @Autowired
     private DeveloperJpaRepository developerRepository;
