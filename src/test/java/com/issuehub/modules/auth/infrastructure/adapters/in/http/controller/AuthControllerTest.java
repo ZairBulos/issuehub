@@ -14,6 +14,7 @@ import com.issuehub.modules.auth.domain.exceptions.*;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
 import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.LoginRequest;
 import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.RequestLoginRequest;
+import com.issuehub.shared.application.ports.security.TokenProviderPort;
 import com.issuehub.shared.domain.model.EntityId;
 import com.issuehub.shared.infrastructure.config.SecurityConfig;
 import org.junit.jupiter.api.Nested;
@@ -47,6 +48,9 @@ class AuthControllerTest {
 
     @MockitoBean
     private RequestLoginUseCase requestLoginUseCase;
+
+    @MockitoBean
+    private TokenProviderPort tokenProviderPort;
 
     @MockitoBean
     private LoginUseCase loginUseCase;
