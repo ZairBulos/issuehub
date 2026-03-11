@@ -20,7 +20,7 @@ import java.util.UUID;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @IntegrationTest
-class AuthControllerIntegrationTest {
+class AuthControllerIT {
 
     @Autowired
     private TestRestTemplate restTemplate;

@@ -34,8 +34,24 @@ IssueHub is a centralized issue intake and ticket management system for developm
        /infrastructure
 ```
 
-##  Database Access
+## Commands
+
+### Testing
 
 ```shell
+# Run unit tests only
+mvn clean test
+
+# Run unit + integration tests
+mvn clean verify
+
+# Run integration tests only
+mvn failsafe:integration-test
+```
+
+###  Database
+
+```shell
+# Access the database
 docker exec -it issuehub-postgres psql -U postgres -d issuehub_db
 ```
