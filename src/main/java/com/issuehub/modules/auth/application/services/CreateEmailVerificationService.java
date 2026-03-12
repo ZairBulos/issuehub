@@ -10,18 +10,18 @@ import com.issuehub.shared.domain.events.DeveloperCreated;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
 
 import java.time.Instant;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public class CreateEmailVerificationService implements CreateEmailVerificationUseCase {
 
     private final EmailVerificationRepositoryPort repositoryPort;
     private final EventPublisherPort publisherPort;
-    private final Function<String, String> hasher;
+    private final UnaryOperator<String> hasher;
 
     public CreateEmailVerificationService(
             EmailVerificationRepositoryPort repositoryPort,
             EventPublisherPort publisherPort,
-            Function<String, String> hasher
+            UnaryOperator<String> hasher
     ) {
         this.repositoryPort = repositoryPort;
         this.publisherPort = publisherPort;

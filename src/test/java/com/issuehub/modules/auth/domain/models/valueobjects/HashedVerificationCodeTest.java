@@ -42,14 +42,17 @@ class HashedVerificationCodeTest {
 
     @Test
     void shouldThrowExceptionWhenNull() {
+        // When/Then
         assertThatThrownBy(() -> new HashedVerificationCode(null))
                 .isInstanceOf(NullPointerException.class);
     }
 
     @Test
     void shouldThrowExceptionWhenEncoderIsNull() {
+        // Given
         var hashed = new HashedVerificationCode("any-hash");
 
+        // When/Then
         assertThatThrownBy(() -> hashed.matches("any-code", null))
                 .isInstanceOf(NullPointerException.class);
     }

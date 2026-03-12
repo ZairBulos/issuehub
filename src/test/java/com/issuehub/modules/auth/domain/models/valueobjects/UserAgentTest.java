@@ -49,6 +49,7 @@ class UserAgentTest {
 
     @Test
     void shouldThrowExceptionWhenValueIsNullLiteral() {
+        // When/Then
         assertThatThrownBy(() -> new UserAgent("null"))
                 .isInstanceOf(InvalidUserAgentException.class);
     }

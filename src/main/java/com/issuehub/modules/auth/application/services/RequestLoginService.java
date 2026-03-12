@@ -13,20 +13,20 @@ import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmail
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
 
 import java.time.Instant;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public class RequestLoginService implements RequestLoginUseCase {
 
     private final LoginVerificationRepositoryPort repositoryPort;
     private final FindDeveloperByEmailUseCase findDeveloperByEmailUseCase;
     private final EventPublisherPort publisherPort;
-    private final Function<String, String> hasher;
+    private final UnaryOperator<String> hasher;
 
     public RequestLoginService(
             LoginVerificationRepositoryPort repositoryPort,
             FindDeveloperByEmailUseCase findDeveloperByEmailUseCase,
             EventPublisherPort publisherPort,
-            Function<String, String> hasher
+            UnaryOperator<String> hasher
     ) {
         this.repositoryPort = repositoryPort;
         this.findDeveloperByEmailUseCase = findDeveloperByEmailUseCase;

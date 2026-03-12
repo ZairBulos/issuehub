@@ -143,20 +143,24 @@ class LoginServiceTest {
     @Test
     void shouldThrowExceptionWhenDeveloperNotFound() {
         // Given
+        var cmd = command();
+
         when(findDeveloperByEmailUseCase.execute(EMAIL)).thenReturn(Optional.empty());
 
         // When/Then
-        assertThatThrownBy(() -> loginService.execute(command()))
+        assertThatThrownBy(() -> loginService.execute(cmd))
                 .isInstanceOf(AccountNotFoundException.class);
     }
 
     @Test
     void shouldThrowExceptionWhenDeveloperIsBlocked() {
         // Given
+        var cmd = command();
+
         when(findDeveloperByEmailUseCase.execute(EMAIL)).thenReturn(Optional.of(blockedDeveloper()));
 
         // When/Then
-        assertThatThrownBy(() -> loginService.execute(command()))
+        assertThatThrownBy(() -> loginService.execute(cmd))
                 .isInstanceOf(AccountBlockedException.class);
     }
 
@@ -164,12 +168,13 @@ class LoginServiceTest {
     void shouldThrowExceptionWhenActiveCodeNotFound() {
         // Given
         var developer = activeDeveloper();
+        var cmd = command();
 
         when(findDeveloperByEmailUseCase.execute(EMAIL)).thenReturn(Optional.of(developer));
         when(repositoryPort.findActiveByDeveloperId(developer.id())).thenReturn(Optional.empty());
 
         // When/Then
-        assertThatThrownBy(() -> loginService.execute(command()))
+        assertThatThrownBy(() -> loginService.execute(cmd))
                 .isInstanceOf(ActiveLoginCodeNotFoundException.class);
     }
 

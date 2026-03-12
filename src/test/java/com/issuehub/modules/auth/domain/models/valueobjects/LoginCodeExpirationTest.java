@@ -63,6 +63,7 @@ class LoginCodeExpirationTest {
 
     @Test
     void shouldThrowExceptionWhenNull() {
+        // When/Then
         assertThatThrownBy(() -> new LoginCodeExpiration(null))
                 .isInstanceOf(NullPointerException.class);
     }
