@@ -27,7 +27,7 @@ class DeveloperCreatedListenerIT {
     @Autowired
     private EmailVerificationJpaRepository emailVerificationRepository;
 
-    private static final String CLEAN_DB = "/db/clean/developers.sql";
+    private static final String CLEAN_DB = "/db/clean/email_verifications.sql";
     private static final String DATA_DB = "/db/data/developers.sql";
 
     @Test
