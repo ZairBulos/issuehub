@@ -2,7 +2,7 @@ package com.issuehub.modules.auth.domain.models.valueobjects;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -31,7 +31,7 @@ class VerificationCodeTest {
     void shouldTransformToHashed() {
         // Given
         var code = new VerificationCode("plain-text-code");
-        Function<String, String> dummyHasher = plain -> "hashed-" + plain;
+        UnaryOperator<String> dummyHasher = plain -> "hashed-" + plain;
 
         // When
         var hashedCode = code.toHashed(dummyHasher);
@@ -42,14 +42,17 @@ class VerificationCodeTest {
 
     @Test
     void shouldThrowExceptionWhenNull() {
+        // When/Then
         assertThatThrownBy(() -> new VerificationCode(null))
                 .isInstanceOf(NullPointerException.class);
     }
 
     @Test
     void shouldThrowExceptionWhenHasherIsNull() {
+        // Given
         var code = VerificationCode.generate();
 
+        // When/Then
         assertThatThrownBy(() -> code.toHashed(null))
                 .isInstanceOf(NullPointerException.class);
     }

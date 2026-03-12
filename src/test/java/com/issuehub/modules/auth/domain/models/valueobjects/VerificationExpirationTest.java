@@ -63,6 +63,7 @@ class VerificationExpirationTest {
 
     @Test
     void shouldThrowExceptionWhenNull() {
+        // When/Then
         assertThatThrownBy(() -> new VerificationExpiration(null))
                 .isInstanceOf(NullPointerException.class);
     }

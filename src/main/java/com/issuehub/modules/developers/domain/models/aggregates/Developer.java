@@ -14,7 +14,7 @@ public class Developer extends AggregateRoot {
 
     private final EntityId id;
     private final DeveloperEmail email;
-    private Boolean isVerified;
+    private boolean isVerified;
     private DeveloperStatus status;
     private DeveloperProfile profile;
     private final Instant createdAt;

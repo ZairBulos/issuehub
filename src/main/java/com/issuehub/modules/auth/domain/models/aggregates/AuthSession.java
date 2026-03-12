@@ -16,7 +16,7 @@ public class AuthSession extends AggregateRoot {
     private final EntityId developerId;
     private final HashedRefreshToken hashedToken;
     private final RefreshTokenExpiration expiresAt;
-    private Boolean revoked;
+    private boolean revoked;
     private final IpAddress ipAddress;
     private final UserAgent userAgent;
     private final Instant createdAt;
@@ -44,7 +44,17 @@ public class AuthSession extends AggregateRoot {
     }
 
     // === Constructor ===
-    public AuthSession(EntityId id, EntityId developerId, HashedRefreshToken hashedToken, RefreshTokenExpiration expiresAt, Boolean revoked, IpAddress ipAddress, UserAgent userAgent, Instant createdAt, Instant updatedAt) {
+    public AuthSession(
+            EntityId id,
+            EntityId developerId,
+            HashedRefreshToken hashedToken,
+            RefreshTokenExpiration expiresAt,
+            boolean revoked,
+            IpAddress ipAddress,
+            UserAgent userAgent,
+            Instant createdAt,
+            Instant updatedAt
+    ) {
         this.id = id;
         this.developerId = developerId;
         this.hashedToken = hashedToken;
@@ -59,10 +69,6 @@ public class AuthSession extends AggregateRoot {
     // === Checks ===
     public boolean isValid(Instant now) {
         return !isRevoked() && !isExpired(now);
-    }
-
-    public boolean isRevoked() {
-        return revoked;
     }
 
     public boolean isExpired(Instant now) {
@@ -95,7 +101,7 @@ public class AuthSession extends AggregateRoot {
         return expiresAt;
     }
 
-    public Boolean getRevoked() {
+    public boolean isRevoked() {
         return revoked;
     }
 

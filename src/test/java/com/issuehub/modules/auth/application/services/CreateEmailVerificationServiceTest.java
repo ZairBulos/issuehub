@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -26,7 +26,7 @@ class CreateEmailVerificationServiceTest {
     @Mock
     private EventPublisherPort publisherPort;
 
-    private final Function<String, String> hasher = code -> "hashed_" + code;
+    private final UnaryOperator<String> hasher = code -> "hashed_" + code;
 
     private CreateEmailVerificationService createEmailVerificationService;
 

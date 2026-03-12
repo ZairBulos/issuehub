@@ -17,7 +17,7 @@ import org.springframework.test.context.jdbc.Sql;
 import java.time.Instant;
 import java.util.UUID;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @IntegrationTest
 class AuthControllerIT {
@@ -93,7 +93,7 @@ class AuthControllerIT {
             assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
             var loginVerifications = loginVerificationRepository.findAll();
-            assertThat(loginVerifications.size()).isEqualTo(2);
+            assertThat(loginVerifications).hasSize(2);
 
             var invalidated = loginVerifications.stream()
                     .filter(v -> v.getId().equals(UUID.fromString("00000000-0000-0000-0000-000000000000")))
@@ -152,7 +152,7 @@ class AuthControllerIT {
 
             // Then — session persisted
             var sessions = authSessionRepository.findAll();
-            assertThat(sessions.size()).isEqualTo(1);
+            assertThat(sessions).hasSize(1);
             assertThat(sessions.get(0).getHashedToken()).isNotBlank();
             assertThat(sessions.get(0).getExpiresAt()).isAfter(Instant.now());
             assertThat(sessions.get(0).getRevoked()).isFalse();

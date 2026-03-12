@@ -2,12 +2,12 @@ package com.issuehub.modules.auth.domain.models.valueobjects;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LoginCodeTest {
+class LoginCodeTest {
 
     @Test
     void shouldGenerateValidCode() {
@@ -16,7 +16,7 @@ public class LoginCodeTest {
 
         // Then
         assertThat(code.value()).isNotNull();
-        assertThat(code.value().length()).isEqualTo(6);
+        assertThat(code.value()).hasSize(6);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class LoginCodeTest {
     void shouldTransformToHashed() {
         // Given
         var code = new LoginCode("123456");
-        Function<String, String> dummyHasher = plain -> "hashed-" + plain;
+        UnaryOperator<String> dummyHasher = plain -> "hashed-" + plain;
 
         // When
         var hashedCode = code.toHashed(dummyHasher);
@@ -44,6 +44,7 @@ public class LoginCodeTest {
 
     @Test
     void shouldThrowExceptionWhenNull() {
+        // When/Then
         assertThatThrownBy(() -> new LoginCode(null))
                 .isInstanceOf(NullPointerException.class);
     }

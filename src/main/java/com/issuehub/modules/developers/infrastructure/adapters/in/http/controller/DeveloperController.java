@@ -27,7 +27,7 @@ public class DeveloperController {
     private final CreateDeveloperUseCase createDeveloperUseCase;
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody CreateDeveloperRequest request) {
+    public ResponseEntity<Void> create(@Valid @RequestBody CreateDeveloperRequest request) {
         log.info("Creating developer: {}", request.email());
 
         createDeveloperUseCase.execute(new CreateDeveloperCommand(new DeveloperEmail(request.email())));

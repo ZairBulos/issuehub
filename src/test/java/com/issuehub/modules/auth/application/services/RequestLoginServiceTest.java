@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,7 +33,7 @@ class RequestLoginServiceTest {
     @Mock
     private EventPublisherPort publisherPort;
 
-    private final Function<String, String> hasher = code -> "hashed_" + code;
+    private final UnaryOperator<String> hasher = code -> "hashed_" + code;
 
     private RequestLoginService requestLoginService;
 

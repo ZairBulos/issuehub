@@ -2,7 +2,7 @@ package com.issuehub.modules.auth.domain.models.valueobjects;
 
 import java.util.Objects;
 import java.util.UUID;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public record VerificationCode(String value) {
 
@@ -14,7 +14,7 @@ public record VerificationCode(String value) {
         return new VerificationCode(UUID.randomUUID().toString());
     }
 
-    public HashedVerificationCode toHashed(Function<String, String> hasher) {
+    public HashedVerificationCode toHashed(UnaryOperator<String> hasher) {
         Objects.requireNonNull(hasher, "Hasher cannot be null");
 
         return new HashedVerificationCode(hasher.apply(value));

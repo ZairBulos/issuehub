@@ -23,7 +23,7 @@ public class AuthSessionMapper {
                     session.getDeveloperId().value(),
                     session.getHashedToken().value(),
                     session.getExpiresAt().value(),
-                    session.getRevoked(),
+                    session.isRevoked(),
                     InetAddress.getByName(session.getIpAddress().value()),
                     session.getUserAgent().value(),
                     session.getCreatedAt(),
