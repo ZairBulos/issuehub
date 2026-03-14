@@ -1,5 +1,13 @@
 # IssueHub
 
+<div align="center">
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.issuehub&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=com.issuehub)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.issuehub&metric=coverage)](https://sonarcloud.io/summary/new_code?id=com.issuehub)
+[![CI](https://github.com/ZairBulos/issuehub/actions/workflows/ci.yml/badge.svg?branch=development)](https://github.com/ZairBulos/issuehub/actions/workflows/ci.yml)
+
+</div>
+
 IssueHub is a centralized issue intake and ticket management system for development projects.
 
 ## Project Structure
