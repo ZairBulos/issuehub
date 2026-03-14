@@ -55,6 +55,9 @@
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
 		<project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
+
+		<!-- SonarQube -->
+		<sonar.organization>zair-bulos</sonar.organization>
 	</properties>
 
 	<dependencies>
