@@ -3,13 +3,11 @@ package com.issuehub.modules.developers.infrastructure.config;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByIdUseCase;
 import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperUseCase;
+import com.issuehub.modules.developers.application.ports.in.internal.GetDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.in.internal.ReactivateDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.in.internal.VerifyDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
-import com.issuehub.modules.developers.application.services.CreateDeveloperService;
-import com.issuehub.modules.developers.application.services.FindDeveloperService;
-import com.issuehub.modules.developers.application.services.ReactivateDeveloperService;
-import com.issuehub.modules.developers.application.services.VerifyDeveloperService;
+import com.issuehub.modules.developers.application.services.*;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,6 +51,11 @@ public class DeveloperBeanConfig {
         return command -> transactionOperations.executeWithoutResult(status ->
                 service.execute(command)
         );
+    }
+
+    @Bean
+    public GetDeveloperUseCase getDeveloperUseCase(DeveloperRepositoryPort repositoryPort) {
+        return new GetDeveloperService(repositoryPort);
     }
 
     @Bean

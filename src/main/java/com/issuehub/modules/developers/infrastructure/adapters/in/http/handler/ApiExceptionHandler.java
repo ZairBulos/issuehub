@@ -1,6 +1,7 @@
 package com.issuehub.modules.developers.infrastructure.adapters.in.http.handler;
 
 import com.issuehub.modules.developers.application.exceptions.DeveloperAlreadyExistsException;
+import com.issuehub.modules.developers.application.exceptions.DeveloperNotFoundException;
 import com.issuehub.modules.developers.domain.exceptions.DeveloperBlockedException;
 import com.issuehub.modules.developers.domain.exceptions.DeveloperDeletedException;
 import com.issuehub.modules.developers.domain.exceptions.InvalidDeveloperEmailException;
@@ -68,6 +69,18 @@ public class ApiExceptionHandler {
         return ErrorResponse.fromException(
                 ex,
                 HttpStatus.CONFLICT.value(),
+                request.getRequestURI()
+        );
+    }
+
+    @ExceptionHandler(DeveloperNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleDeveloperNotFoundException(DeveloperNotFoundException ex, HttpServletRequest request) {
+        log.warn("Developer not found at [{}]: {}", request.getRequestURI(), ex.getMessage());
+
+        return ErrorResponse.fromException(
+                ex,
+                HttpStatus.NOT_FOUND.value(),
                 request.getRequestURI()
         );
     }
