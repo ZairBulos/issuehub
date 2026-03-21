@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -58,6 +59,18 @@ public class ApiExceptionHandler {
                 "Validation failed for one or more fields",
                 HttpStatus.BAD_REQUEST.value(),
                 details,
+                request.getRequestURI()
+        );
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleMissingServletRequestParameterException(MissingServletRequestParameterException ex, HttpServletRequest request) {
+        log.warn("Missing parameter at [{}]: {}", request.getRequestURI(), ex.getMessage());
+
+        return ErrorResponse.fromException(
+                ex,
+                HttpStatus.BAD_REQUEST.value(),
                 request.getRequestURI()
         );
     }
