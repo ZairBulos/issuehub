@@ -29,6 +29,14 @@ jwt:
   accessTokenExpiration: PT15M
   refreshTokenExpiration: P7D
 
+app:
+  github:
+    client-id: test-client-id
+    client-secret: test-client-secret
+    callback-url: http://localhost:8080/integrations/github/callback
+
+  encryption:
+    secret-key: nQK7zJksWAWfWWkNVucOmrV4gnvHHgnIVEknJJfD1WQ=
 
 logging:
   level:
