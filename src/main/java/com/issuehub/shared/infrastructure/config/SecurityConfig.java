@@ -32,6 +32,10 @@ public class SecurityConfig {
             "/developers"
     };
 
+    static final String[] INTEGRATION_WHITELIST = {
+            "/integrations/github/callback"
+    };
+
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
@@ -42,6 +46,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers(DEVELOPER_WHITELIST).permitAll()
+                        .requestMatchers(INTEGRATION_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
