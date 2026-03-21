@@ -25,3 +25,12 @@ jwt:
   audience: ${JWT_AUDIENCE:issuehub-api}
   accessTokenExpiration: ${JWT_ACCESS_TOKEN_EXPIRATION:PT15M}
   refreshTokenExpiration: ${JWT_REFRESH_TOKEN_EXPIRATION:P7D}
+
+app:
+  github:
+    client-id: ${GITHUB_CLIENT_ID}
+    client-secret: ${GITHUB_CLIENT_SECRET}
+    callback-url: ${GITHUB_CALLBACK_URL:http://localhost:8080/integrations/github/callback}
+
+  encryption:
+    secret-key: ${APP_ENCRYPTION_SECRET_KEY}
