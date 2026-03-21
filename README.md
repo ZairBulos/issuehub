@@ -25,6 +25,11 @@ IssueHub is a centralized issue intake and ticket management system for developm
        /domain
        /application
        /infrastructure
+       
+    /integrations       ← Developer management module
+       /domain
+       /application
+       /infrastructure
 
     /notifications      ← Notifications module
        /domain
