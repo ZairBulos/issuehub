@@ -45,6 +45,7 @@ class HexagonalArchitectureTest {
                             "..application..",
                             "..domain..",
                             "java..",
+                            "javax..",
                             "jakarta..",
                             "lombok..",
                             "org..",
