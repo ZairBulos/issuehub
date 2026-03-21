@@ -1,4 +1,4 @@
-package com.issuehub.modules.integrations.infrastructure.adapters.out.rest;
+package com.issuehub.modules.integrations.infrastructure.adapters.out.http;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -64,7 +64,7 @@ public class GitHubClient implements GitHubApiPort {
                 .retrieve()
                 .body(GitHubUserResponse.class);
 
-        if (response == null)
+        if (response == null || response.login() == null)
             throw new GitHubApiException("Failed to obtain user info from GitHub");
 
         return response;
