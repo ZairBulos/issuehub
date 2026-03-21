@@ -1,5 +1,6 @@
 package com.issuehub.modules.integrations.infrastructure.adapters.security;
 
+import com.issuehub.modules.integrations.application.exceptions.EncryptionException;
 import com.issuehub.modules.integrations.infrastructure.config.EncryptionProperties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class AesEncryptionAdapterTest {
 
@@ -46,6 +48,24 @@ class AesEncryptionAdapterTest {
 
         // Then
         assertThat(first).isNotEqualTo(second);
+    }
+
+    @Test
+    void shouldThrowEncryptionException_whenKeyIsInvalid() {
+        // Given
+        var invalidProperties = new EncryptionProperties("bm90YXZhbGlka2V5");
+        var adapter = new AesEncryptionAdapter(invalidProperties);
+
+        // When/Then
+        assertThatThrownBy(() -> adapter.encrypt("value"))
+                .isInstanceOf(EncryptionException.class);
+    }
+
+    @Test
+    void shouldThrowEncryptionException_whenDecryptingInvalidData() {
+        // When/Then
+        assertThatThrownBy(() -> aesEncryptionAdapter.decrypt("not-valid-base64-encrypted-data"))
+                .isInstanceOf(EncryptionException.class);
     }
 
 }
