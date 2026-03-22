@@ -1,18 +1,16 @@
 package com.issuehub.modules.auth.infrastructure.adapters.out.persistence.repositories;
 
-import com.issuehub.IntegrationTest;
+import com.issuehub.RepositoryTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IntegrationTest
-@Transactional // Necessary
+@RepositoryTest
 class LoginVerificationJpaRepositoryIT {
 
     @Autowired

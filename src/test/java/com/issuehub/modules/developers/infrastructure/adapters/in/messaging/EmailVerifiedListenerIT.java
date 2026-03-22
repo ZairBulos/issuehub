@@ -1,12 +1,11 @@
 package com.issuehub.modules.developers.infrastructure.adapters.in.messaging;
 
-import com.issuehub.IntegrationTest;
+import com.issuehub.ModuleIntegrationTest;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.repositories.DeveloperJpaRepository;
 import com.issuehub.shared.domain.events.EmailVerified;
 import com.issuehub.shared.domain.model.EntityId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.modulith.test.Scenario;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -15,8 +14,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IntegrationTest
-@ApplicationModuleTest
+@ModuleIntegrationTest
 class EmailVerifiedListenerIT {
 
     @Autowired

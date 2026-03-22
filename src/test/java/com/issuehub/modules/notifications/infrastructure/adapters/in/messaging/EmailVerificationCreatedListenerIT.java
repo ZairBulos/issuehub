@@ -1,6 +1,5 @@
 package com.issuehub.modules.notifications.infrastructure.adapters.in.messaging;
 
-import com.issuehub.IntegrationTest;
 import com.issuehub.modules.auth.domain.events.EmailVerificationCreated;
 import com.issuehub.shared.domain.model.EntityId;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@IntegrationTest
 @ApplicationModuleTest
 class EmailVerificationCreatedListenerIT {
 
