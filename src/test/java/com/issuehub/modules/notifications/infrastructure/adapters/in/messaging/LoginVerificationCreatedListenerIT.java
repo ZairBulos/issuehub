@@ -1,16 +1,16 @@
 package com.issuehub.modules.notifications.infrastructure.adapters.in.messaging;
 
+import com.issuehub.ModuleIntegrationTest;
 import com.issuehub.modules.auth.domain.events.LoginVerificationCreated;
 import com.issuehub.shared.domain.model.EntityId;
 import org.junit.jupiter.api.Test;
-import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.modulith.test.Scenario;
 
 import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ApplicationModuleTest
+@ModuleIntegrationTest
 class LoginVerificationCreatedListenerIT {
 
     @Test
