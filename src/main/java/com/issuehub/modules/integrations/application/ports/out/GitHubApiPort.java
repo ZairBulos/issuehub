@@ -1,7 +1,7 @@
 package com.issuehub.modules.integrations.application.ports.out;
 
-import com.issuehub.modules.integrations.application.dto.GitHubOAuthResponse;
+import com.issuehub.modules.integrations.application.dto.GitHubAccountDto;
 
 public interface GitHubApiPort {
-    GitHubOAuthResponse exchangeCode(String code);
+    GitHubAccountDto getAccount(String code);
 }

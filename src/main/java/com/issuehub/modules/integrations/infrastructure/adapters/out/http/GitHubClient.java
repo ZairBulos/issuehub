@@ -2,7 +2,7 @@ package com.issuehub.modules.integrations.infrastructure.adapters.out.http;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.issuehub.modules.integrations.application.dto.GitHubOAuthResponse;
+import com.issuehub.modules.integrations.application.dto.GitHubAccountDto;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
 import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
@@ -24,11 +24,11 @@ public class GitHubClient implements GitHubApiPort {
     private final GitHubProperties gitHubProperties;
 
     @Override
-    public GitHubOAuthResponse exchangeCode(String code) {
+    public GitHubAccountDto getAccount(String code) {
         var tokenResponse = fetchAccessToken(code);
         var userResponse = fetchUser(tokenResponse.accessToken());
 
-        return new GitHubOAuthResponse(
+        return new GitHubAccountDto(
                 String.valueOf(userResponse.id()),
                 userResponse.login(),
                 tokenResponse.accessToken(),

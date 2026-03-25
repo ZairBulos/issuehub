@@ -2,7 +2,7 @@ package com.issuehub.modules.integrations.application.dto;
 
 import java.time.Instant;
 
-public record GitHubOAuthResponse(
+public record GitHubAccountDto(
         String userId,
         String username,
         String accessToken,

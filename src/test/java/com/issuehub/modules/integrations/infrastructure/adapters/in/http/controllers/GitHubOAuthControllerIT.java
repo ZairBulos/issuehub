@@ -1,7 +1,7 @@
 package com.issuehub.modules.integrations.infrastructure.adapters.in.http.controllers;
 
 import com.issuehub.IntegrationTest;
-import com.issuehub.modules.integrations.application.dto.GitHubOAuthResponse;
+import com.issuehub.modules.integrations.application.dto.GitHubAccountDto;
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
 import com.issuehub.modules.integrations.infrastructure.adapters.out.persistence.repositories.OAuthConnectionJpaRepository;
 import com.issuehub.shared.application.ports.security.TokenProviderPort;
@@ -46,8 +46,8 @@ class GitHubOAuthControllerIT {
         private static final String CONNECT  = GitHubOAuthController.INTEGRATIONS_GITHUB + GitHubOAuthController.CONNECT;
         private static final String CALLBACK = GitHubOAuthController.INTEGRATIONS_GITHUB + GitHubOAuthController.CALLBACK;
 
-        private GitHubOAuthResponse gitHubOAuthResponse() {
-            return new GitHubOAuthResponse(
+        private GitHubAccountDto githubAccount() {
+            return new GitHubAccountDto(
                     "12345678",
                     "it_test",
                     "ghu_accesstoken",
@@ -72,7 +72,7 @@ class GitHubOAuthControllerIT {
         @Sql({CLEAN_DB, DATA_DB_DEVELOPERS})
         void callback_shouldReturn200AndPersistConnection_whenSucceeds() {
             // Given
-            when(gitHubApiPort.exchangeCode(any())).thenReturn(gitHubOAuthResponse());
+            when(gitHubApiPort.getAccount(any())).thenReturn(githubAccount());
 
             var connectResponse = restTemplate.exchange(
                     CONNECT,

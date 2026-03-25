@@ -3,7 +3,7 @@ package com.issuehub.modules.integrations.application.services;
 import com.issuehub.modules.developers.application.dto.DeveloperView;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.modules.integrations.application.dto.GitHubCallbackCommand;
-import com.issuehub.modules.integrations.application.dto.GitHubOAuthResponse;
+import com.issuehub.modules.integrations.application.dto.GitHubAccountDto;
 import com.issuehub.modules.integrations.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.integrations.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
@@ -19,7 +19,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
@@ -46,7 +45,7 @@ class GitHubCallbackServiceTest {
     private static final String EMAIL = "dev@example.com";
 
     private GitHubCallbackCommand command() {
-        return new GitHubCallbackCommand(CODE, UUID.randomUUID().toString(), EMAIL);
+        return new GitHubCallbackCommand(CODE, EMAIL);
     }
 
     private DeveloperView activeDeveloper() {
@@ -63,7 +62,7 @@ class GitHubCallbackServiceTest {
         var developer = activeDeveloper();
 
         when(findDeveloperByEmailUseCase.execute(EMAIL)).thenReturn(Optional.of(developer));
-        when(gitHubApiPort.exchangeCode(CODE)).thenReturn(new GitHubOAuthResponse(
+        when(gitHubApiPort.getAccount(CODE)).thenReturn(new GitHubAccountDto(
                 "12345678",
                 "test",
                 "ghu_accesstoken",
@@ -78,7 +77,7 @@ class GitHubCallbackServiceTest {
         gitHubCallbackService.execute(command());
 
         // Then
-        verify(gitHubApiPort, times(1)).exchangeCode(CODE);
+        verify(gitHubApiPort, times(1)).getAccount(CODE);
         verify(encryptionPort, times(2)).encrypt(anyString());
         verify(repositoryPort, times(1)).save(any());
     }
@@ -117,7 +116,7 @@ class GitHubCallbackServiceTest {
         var cmd = command();
 
         when(findDeveloperByEmailUseCase.execute(EMAIL)).thenReturn(Optional.of(activeDeveloper()));
-        when(gitHubApiPort.exchangeCode(CODE)).thenThrow(new GitHubApiException("Failed to obtain access token from GitHub"));
+        when(gitHubApiPort.getAccount(CODE)).thenThrow(new GitHubApiException("Failed to obtain access token from GitHub"));
 
         // When/Then
         assertThatThrownBy(() -> gitHubCallbackService.execute(cmd))

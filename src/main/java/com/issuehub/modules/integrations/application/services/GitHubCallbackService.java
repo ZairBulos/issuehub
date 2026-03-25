@@ -44,20 +44,20 @@ public class GitHubCallbackService implements GitHubCallbackUseCase {
             throw new AccountBlockedException("Developer is blocked");
 
         // RN: Exchange OAuth code for GitHub tokens and user info
-        var gitHubResponse = gitHubApiPort.exchangeCode(command.code());
+        var gitHubAccount = gitHubApiPort.getAccount(command.code());
 
         // RN: Encrypt tokens before persisting
-        var encryptedAccessToken = new EncryptedOAuthToken(encryptionPort.encrypt(gitHubResponse.accessToken()));
-        var encryptedRefreshToken = new EncryptedOAuthToken(encryptionPort.encrypt(gitHubResponse.refreshToken()));
+        var encryptedAccessToken = new EncryptedOAuthToken(encryptionPort.encrypt(gitHubAccount.accessToken()));
+        var encryptedRefreshToken = new EncryptedOAuthToken(encryptionPort.encrypt(gitHubAccount.refreshToken()));
 
         var connection = OAuthConnection.createGitHub(
                 developer.id(),
-                new ProviderUserId(gitHubResponse.userId()),
-                new ProviderUsername(gitHubResponse.username()),
+                new ProviderUserId(gitHubAccount.userId()),
+                new ProviderUsername(gitHubAccount.username()),
                 encryptedAccessToken,
                 encryptedRefreshToken,
-                new OAuthTokenExpiration(gitHubResponse.accessTokenExpiresAt()),
-                new OAuthTokenExpiration(gitHubResponse.refreshTokenExpiresAt())
+                new OAuthTokenExpiration(gitHubAccount.accessTokenExpiresAt()),
+                new OAuthTokenExpiration(gitHubAccount.refreshTokenExpiresAt())
         );
         repositoryPort.save(connection);
     }

@@ -33,7 +33,7 @@ class GitHubClientTest {
     }
 
     @Test
-    void shouldReturnOAuthResponse_whenExchangeCodeSucceeds() {
+    void shouldReturnAccountDto_whenGetAccountSucceeds() {
         // Given
         mockServer.expect(requestTo("https://github.com/login/oauth/access_token"))
                 .andExpect(method(HttpMethod.POST))
@@ -51,16 +51,16 @@ class GitHubClientTest {
                 .andRespond(withSuccess("""
                         {
                             "id": 102187164,
-                            "login": "ZairBulos"
+                            "login": "test"
                         }
                         """, MediaType.APPLICATION_JSON));
 
         // When
-        var response = gitHubClient.exchangeCode("github-code-123");
+        var response = gitHubClient.getAccount("github-code-123");
 
         // Then
         assertThat(response.userId()).isEqualTo("102187164");
-        assertThat(response.username()).isEqualTo("ZairBulos");
+        assertThat(response.username()).isEqualTo("test");
         assertThat(response.accessToken()).isEqualTo("ghu_accesstoken");
         assertThat(response.refreshToken()).isEqualTo("ghr_refreshtoken");
         assertThat(response.accessTokenExpiresAt()).isAfter(Instant.now());
@@ -77,7 +77,7 @@ class GitHubClientTest {
                 .andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
 
         // When/Then
-        assertThatThrownBy(() -> gitHubClient.exchangeCode("invalid-code"))
+        assertThatThrownBy(() -> gitHubClient.getAccount("invalid-code"))
                 .isInstanceOf(GitHubApiException.class);
     }
 
@@ -100,7 +100,7 @@ class GitHubClientTest {
                 .andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
 
         // When/Then
-        assertThatThrownBy(() -> gitHubClient.exchangeCode("github-code-123"))
+        assertThatThrownBy(() -> gitHubClient.getAccount("github-code-123"))
                 .isInstanceOf(GitHubApiException.class);
     }
 

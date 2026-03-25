@@ -59,7 +59,7 @@ public class GitHubOAuthController {
 
         log.info("GitHub OAuth callback for developer: {}", email);
 
-        gitHubCallbackUseCase.execute(new GitHubCallbackCommand(code, state, email));
+        gitHubCallbackUseCase.execute(new GitHubCallbackCommand(code, email));
 
         return ResponseEntity.ok().build();
     }
