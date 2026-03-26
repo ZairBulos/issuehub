@@ -3,6 +3,7 @@ package com.issuehub.modules.integrations.infrastructure.adapters.out.http;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
 import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -32,76 +33,124 @@ class GitHubClientTest {
         gitHubClient = new GitHubClient(restClientBuilder.build(), properties);
     }
 
-    @Test
-    void shouldReturnAccountDto_whenGetAccountSucceeds() {
-        // Given
-        mockServer.expect(requestTo("https://github.com/login/oauth/access_token"))
-                .andExpect(method(HttpMethod.POST))
-                .andRespond(withSuccess("""
+    @Nested
+    class GetAccount {
+
+        @Test
+        void shouldReturnAccountDto_whenGetAccountSucceeds() {
+            // Given
+            mockServer.expect(requestTo("https://github.com/login/oauth/access_token"))
+                    .andExpect(method(HttpMethod.POST))
+                    .andRespond(withSuccess("""
+                            {
+                                "access_token": "ghu_accesstoken",
+                                "expires_in": 28800,
+                                "refresh_token": "ghr_refreshtoken",
+                                "refresh_token_expires_in": 15897600
+                            }
+                            """, MediaType.APPLICATION_JSON));
+
+            mockServer.expect(requestTo("https://api.github.com/user"))
+                    .andExpect(method(HttpMethod.GET))
+                    .andRespond(withSuccess("""
+                            {
+                                "id": 102187164,
+                                "login": "test"
+                            }
+                            """, MediaType.APPLICATION_JSON));
+
+            // When
+            var response = gitHubClient.getAccount("github-code-123");
+
+            // Then
+            assertThat(response.userId()).isEqualTo("102187164");
+            assertThat(response.username()).isEqualTo("test");
+            assertThat(response.accessToken()).isEqualTo("ghu_accesstoken");
+            assertThat(response.refreshToken()).isEqualTo("ghr_refreshtoken");
+            assertThat(response.accessTokenExpiresAt()).isAfter(Instant.now());
+            assertThat(response.refreshTokenExpiresAt()).isAfter(Instant.now());
+
+            mockServer.verify();
+        }
+
+        @Test
+        void shouldThrowGitHubApiException_whenTokenResponseIsEmpty() {
+            // Given
+            mockServer.expect(requestTo("https://github.com/login/oauth/access_token"))
+                    .andExpect(method(HttpMethod.POST))
+                    .andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
+
+            // When/Then
+            assertThatThrownBy(() -> gitHubClient.getAccount("invalid-code"))
+                    .isInstanceOf(GitHubApiException.class);
+        }
+
+        @Test
+        void shouldThrowGitHubApiException_whenUserResponseIsEmpty() {
+            // Given
+            mockServer.expect(requestTo("https://github.com/login/oauth/access_token"))
+                    .andExpect(method(HttpMethod.POST))
+                    .andRespond(withSuccess("""
+                            {
+                                "access_token": "ghu_accesstoken",
+                                "expires_in": 28800,
+                                "refresh_token": "ghr_refreshtoken",
+                                "refresh_token_expires_in": 15897600
+                            }
+                            """, MediaType.APPLICATION_JSON));
+
+            mockServer.expect(requestTo("https://api.github.com/user"))
+                    .andExpect(method(HttpMethod.GET))
+                    .andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
+
+            // When/Then
+            assertThatThrownBy(() -> gitHubClient.getAccount("github-code-123"))
+                    .isInstanceOf(GitHubApiException.class);
+        }
+
+    }
+
+    @Nested
+    class RefreshToken {
+
+        @Test
+        void shouldReturnRefreshedTokenDto_whenRefreshTokenSucceeds() {
+            // Given
+            mockServer.expect(requestTo("https://github.com/login/oauth/access_token"))
+                    .andExpect(method(HttpMethod.POST))
+                    .andRespond(withSuccess("""
                         {
-                            "access_token": "ghu_accesstoken",
+                            "access_token": "ghu_new_accesstoken",
                             "expires_in": 28800,
-                            "refresh_token": "ghr_refreshtoken",
+                            "refresh_token": "ghr_new_refreshtoken",
                             "refresh_token_expires_in": 15897600
                         }
                         """, MediaType.APPLICATION_JSON));
 
-        mockServer.expect(requestTo("https://api.github.com/user"))
-                .andExpect(method(HttpMethod.GET))
-                .andRespond(withSuccess("""
-                        {
-                            "id": 102187164,
-                            "login": "test"
-                        }
-                        """, MediaType.APPLICATION_JSON));
+            // When
+            var response = gitHubClient.refreshToken("ghr_refreshtoken");
 
-        // When
-        var response = gitHubClient.getAccount("github-code-123");
+            // Then
+            assertThat(response.accessToken()).isEqualTo("ghu_new_accesstoken");
+            assertThat(response.refreshToken()).isEqualTo("ghr_new_refreshtoken");
+            assertThat(response.accessTokenExpiresAt()).isAfter(Instant.now());
+            assertThat(response.refreshTokenExpiresAt()).isAfter(Instant.now());
 
-        // Then
-        assertThat(response.userId()).isEqualTo("102187164");
-        assertThat(response.username()).isEqualTo("test");
-        assertThat(response.accessToken()).isEqualTo("ghu_accesstoken");
-        assertThat(response.refreshToken()).isEqualTo("ghr_refreshtoken");
-        assertThat(response.accessTokenExpiresAt()).isAfter(Instant.now());
-        assertThat(response.refreshTokenExpiresAt()).isAfter(Instant.now());
+            mockServer.verify();
+        }
 
-        mockServer.verify();
-    }
+        @Test
+        void shouldThrowGitHubApiException_whenRefreshTokenResponseIsEmpty() {
+            // Given
+            mockServer.expect(requestTo("https://github.com/login/oauth/access_token"))
+                    .andExpect(method(HttpMethod.POST))
+                    .andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
 
-    @Test
-    void shouldThrowGitHubApiException_whenTokenResponseIsEmpty() {
-        // Given
-        mockServer.expect(requestTo("https://github.com/login/oauth/access_token"))
-                .andExpect(method(HttpMethod.POST))
-                .andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
+            // When/Then
+            assertThatThrownBy(() -> gitHubClient.refreshToken("ghr_expired_token"))
+                    .isInstanceOf(GitHubApiException.class);
+        }
 
-        // When/Then
-        assertThatThrownBy(() -> gitHubClient.getAccount("invalid-code"))
-                .isInstanceOf(GitHubApiException.class);
-    }
-
-    @Test
-    void shouldThrowGitHubApiException_whenUserResponseIsEmpty() {
-        // Given
-        mockServer.expect(requestTo("https://github.com/login/oauth/access_token"))
-                .andExpect(method(HttpMethod.POST))
-                .andRespond(withSuccess("""
-                        {
-                            "access_token": "ghu_accesstoken",
-                            "expires_in": 28800,
-                            "refresh_token": "ghr_refreshtoken",
-                            "refresh_token_expires_in": 15897600
-                        }
-                        """, MediaType.APPLICATION_JSON));
-
-        mockServer.expect(requestTo("https://api.github.com/user"))
-                .andExpect(method(HttpMethod.GET))
-                .andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
-
-        // When/Then
-        assertThatThrownBy(() -> gitHubClient.getAccount("github-code-123"))
-                .isInstanceOf(GitHubApiException.class);
     }
 
 }
