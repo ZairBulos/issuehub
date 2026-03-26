@@ -3,10 +3,12 @@ package com.issuehub.modules.integrations.infrastructure.adapters.out.http;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.issuehub.modules.integrations.application.dto.GitHubAccountDto;
+import com.issuehub.modules.integrations.application.dto.GitHubRefreshedTokenDto;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
 import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
@@ -38,10 +40,22 @@ public class GitHubClient implements GitHubApiPort {
         );
     }
 
+    @Override
+    public GitHubRefreshedTokenDto refreshToken(String refreshToken) {
+        var tokenResponse = fetchRefreshToken(refreshToken);
+
+        return new GitHubRefreshedTokenDto(
+                tokenResponse.accessToken(),
+                tokenResponse.refreshToken(),
+                Instant.now().plusSeconds(tokenResponse.expiresIn()),
+                Instant.now().plusSeconds(tokenResponse.refreshTokenExpiresIn())
+        );
+    }
+
     private GitHubTokenResponse fetchAccessToken(String code) {
         var response = restClient.post()
                 .uri(GITHUB_TOKEN_URL)
-                .header("Accept", "application/json")
+                .header(HttpHeaders.ACCEPT, "application/json")
                 .body(Map.of(
                         "client_id", gitHubProperties.clientId(),
                         "client_secret", gitHubProperties.clientSecret(),
@@ -56,11 +70,30 @@ public class GitHubClient implements GitHubApiPort {
         return response;
     }
 
+    private GitHubTokenResponse fetchRefreshToken(String refreshToken) {
+        var response = restClient.post()
+                .uri(GITHUB_TOKEN_URL)
+                .header(HttpHeaders.ACCEPT, "application/json")
+                .body(Map.of(
+                        "client_id", gitHubProperties.clientId(),
+                        "client_secret", gitHubProperties.clientSecret(),
+                        "grant_type", "refresh_token",
+                        "refresh_token", refreshToken
+                ))
+                .retrieve()
+                .body(GitHubTokenResponse.class);
+
+        if (response == null || response.accessToken() == null)
+            throw new GitHubApiException("Failed to refresh token from GitHub");
+
+        return response;
+    }
+
     private GitHubUserResponse fetchUser(String accessToken) {
         var response = restClient.get()
                 .uri(GITHUB_USER_URL)
-                .header("Accept", "application/vnd.github+json")
-                .header("Authorization", "Bearer " + accessToken)
+                .header(HttpHeaders.ACCEPT, "application/vnd.github+json")
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                 .retrieve()
                 .body(GitHubUserResponse.class);
 
