@@ -14,6 +14,7 @@ import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
@@ -148,6 +149,84 @@ class GitHubClientTest {
 
             // When/Then
             assertThatThrownBy(() -> gitHubClient.refreshToken("ghr_expired_token"))
+                    .isInstanceOf(GitHubApiException.class);
+        }
+
+    }
+
+    @Nested
+    class GetRepositories {
+
+        @Test
+        void shouldReturnRepositories_whenGetRepositoriesSucceeds() {
+            // Given
+            mockServer.expect(requestTo(containsString("https://api.github.com/users/octocat/repos")))
+                    .andExpect(method(HttpMethod.GET))
+                    .andRespond(withSuccess("""
+                        [
+                            {
+                                "id": 1,
+                                "name": "repo",
+                                "full_name": "octocat/repo",
+                                "owner": { "login": "octocat" },
+                                "has_issues": true,
+                                "archived": false,
+                                "disabled": false,
+                                "permissions": { "admin": false, "push": true, "pull": true }
+                            }
+                        ]
+                        """, MediaType.APPLICATION_JSON));
+
+            // When
+            var response = gitHubClient.getRepositories("ghu_accesstoken", "octocat", 1, 30);
+
+            // Then
+            assertThat(response).hasSize(1);
+            assertThat(response.get(0).name()).isEqualTo("repo");
+            assertThat(response.get(0).fullName()).isEqualTo("octocat/repo");
+            assertThat(response.get(0).ownerName()).isEqualTo("octocat");
+
+            mockServer.verify();
+        }
+
+        @Test
+        void shouldReturnEmptyList_whenNoRepositoriesMatchFilter() {
+            // Given
+            mockServer.expect(requestTo(containsString("https://api.github.com/users/octocat/repos")))
+                    .andExpect(method(HttpMethod.GET))
+                    .andRespond(withSuccess("""
+                        [
+                            {
+                                "id": 1,
+                                "name": "read-only-repo",
+                                "full_name": "octocat/read-only-repo",
+                                "owner": { "login": "octocat" },
+                                "has_issues": true,
+                                "archived": false,
+                                "disabled": false,
+                                "permissions": { "admin": false, "push": false, "pull": true }
+                            }
+                        ]
+                        """, MediaType.APPLICATION_JSON));
+
+            // When
+            var response = gitHubClient.getRepositories("ghu_accesstoken", "octocat", 1, 30);
+
+            // Then
+            assertThat(response).isEmpty();
+
+            mockServer.verify();
+        }
+
+        @Test
+        void shouldThrowGitHubApiException_whenRepositoriesResponseIsNull() {
+            // Given
+            mockServer.expect(requestTo(containsString("https://api.github.com/users/octocat/repos")))
+                    .andExpect(method(HttpMethod.GET))
+                    .andRespond(withSuccess("null", MediaType.APPLICATION_JSON));
+
+            // When/Then
+            assertThatThrownBy(() -> gitHubClient.getRepositories("ghu_accesstoken", "octocat", 1, 30))
                     .isInstanceOf(GitHubApiException.class);
         }
 
