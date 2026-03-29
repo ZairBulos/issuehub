@@ -1,8 +1,12 @@
 package com.issuehub.modules.integrations.infrastructure.adapters.in.http.controllers;
 
 import com.issuehub.modules.integrations.application.dto.GitHubCallbackCommand;
+import com.issuehub.modules.integrations.application.dto.GitHubRepositoryDto;
+import com.issuehub.modules.integrations.application.dto.ListGitHubRepositoriesQuery;
 import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackUseCase;
+import com.issuehub.modules.integrations.application.ports.in.ListGitHubRepositoriesUseCase;
 import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
+import com.issuehub.shared.infrastructure.adapters.in.http.dto.PagedResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +31,11 @@ public class GitHubOAuthController {
     static final String INTEGRATIONS_GITHUB = "/integrations/github";
     static final String CONNECT = "/connect";
     static final String CALLBACK = "/callback";
+    static final String REPOSITORIES = "/repositories";
 
     private final GitHubProperties gitHubProperties;
     private final GitHubCallbackUseCase gitHubCallbackUseCase;
+    private final ListGitHubRepositoriesUseCase listGitHubRepositoriesUseCase;
 
     private final Map<String, String> store = new ConcurrentHashMap<>();
 
@@ -62,6 +68,21 @@ public class GitHubOAuthController {
         gitHubCallbackUseCase.execute(new GitHubCallbackCommand(code, email));
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(REPOSITORIES)
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<PagedResponse<GitHubRepositoryDto>> listRepositories(
+            @AuthenticationPrincipal final String email,
+            @RequestParam final String providerUserId,
+            @RequestParam(defaultValue = "1") final int page,
+            @RequestParam(defaultValue = "30") final int pageSize
+    ) {
+        log.info("GitHub OAuth list repositories for developer: {}", email);
+
+        var result = listGitHubRepositoriesUseCase.execute(new ListGitHubRepositoriesQuery(email, providerUserId, page, pageSize));
+
+        return ResponseEntity.ok(PagedResponse.of(result, page, pageSize));
     }
 
 }

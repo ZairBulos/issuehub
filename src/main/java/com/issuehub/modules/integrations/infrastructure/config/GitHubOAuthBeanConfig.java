@@ -2,11 +2,13 @@ package com.issuehub.modules.integrations.infrastructure.config;
 
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackUseCase;
+import com.issuehub.modules.integrations.application.ports.in.ListGitHubRepositoriesUseCase;
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
 import com.issuehub.modules.integrations.application.ports.out.OAuthConnectionRepositoryPort;
 import com.issuehub.modules.integrations.application.ports.security.EncryptionPort;
 import com.issuehub.modules.integrations.application.services.GitHubCallbackService;
 import com.issuehub.modules.integrations.application.services.GitHubRefreshTokenService;
+import com.issuehub.modules.integrations.application.services.ListGitHubRepositoriesService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestClient;
@@ -36,6 +38,17 @@ public class GitHubOAuthBeanConfig {
             EncryptionPort encryptionPort
     ) {
         return new GitHubRefreshTokenService(gitHubApiPort, repositoryPort, encryptionPort);
+    }
+
+    @Bean
+    public ListGitHubRepositoriesUseCase listGitHubRepositoriesUseCase(
+            GitHubApiPort gitHubApiPort,
+            OAuthConnectionRepositoryPort repositoryPort,
+            FindDeveloperByEmailUseCase findDeveloperByEmailUseCase,
+            GitHubRefreshTokenService gitHubRefreshTokenService,
+            EncryptionPort encryptionPort
+    ) {
+        return new ListGitHubRepositoriesService(gitHubApiPort, repositoryPort, findDeveloperByEmailUseCase, gitHubRefreshTokenService, encryptionPort);
     }
 
 }

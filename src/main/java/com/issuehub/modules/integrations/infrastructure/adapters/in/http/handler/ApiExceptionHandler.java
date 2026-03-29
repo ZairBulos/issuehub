@@ -3,6 +3,7 @@ package com.issuehub.modules.integrations.infrastructure.adapters.in.http.handle
 import com.issuehub.modules.integrations.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.integrations.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
+import com.issuehub.modules.integrations.application.exceptions.OAuthConnectionNotFoundException;
 import com.issuehub.shared.infrastructure.adapters.in.http.dto.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -50,6 +51,18 @@ public class ApiExceptionHandler {
         return ErrorResponse.fromException(
                 ex,
                 HttpStatus.BAD_GATEWAY.value(),
+                request.getRequestURI()
+        );
+    }
+
+    @ExceptionHandler(OAuthConnectionNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleOAuthConnectionNotFoundException(OAuthConnectionNotFoundException ex, HttpServletRequest request) {
+        log.error("Connection not found at [{}]: {}", request.getRequestURI(), ex.getMessage());
+
+        return ErrorResponse.fromException(
+                ex,
+                HttpStatus.NOT_FOUND.value(),
                 request.getRequestURI()
         );
     }
