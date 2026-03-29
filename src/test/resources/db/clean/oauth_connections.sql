@@ -1,3 +1,3 @@
-DELETE FROM developers;
-
 DELETE FROM oauth_connections;
+
+DELETE FROM developers;
