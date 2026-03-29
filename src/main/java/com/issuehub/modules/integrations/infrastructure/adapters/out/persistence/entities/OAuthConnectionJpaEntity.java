@@ -22,7 +22,10 @@ public class OAuthConnectionJpaEntity {
     @Column(name = "developer_id", nullable = false)
     private UUID developerId;
 
-    @ColumnTransformer(write = "?::oauth_provider")
+    @ColumnTransformer(
+            read = "provider::text",
+            write = "?::oauth_provider"
+    )
     @Column(name = "provider", nullable = false)
     private String provider;
 

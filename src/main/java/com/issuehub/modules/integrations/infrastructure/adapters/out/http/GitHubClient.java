@@ -4,15 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.issuehub.modules.integrations.application.dto.GitHubAccountDto;
 import com.issuehub.modules.integrations.application.dto.GitHubRefreshedTokenDto;
+import com.issuehub.modules.integrations.application.dto.GitHubRepositoryDto;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
 import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -21,6 +24,7 @@ public class GitHubClient implements GitHubApiPort {
 
     private static final String GITHUB_TOKEN_URL = "https://github.com/login/oauth/access_token";
     private static final String GITHUB_USER_URL = "https://api.github.com/user";
+    private static final String GITHUB_REPOS_URL = "https://api.github.com/users/{username}/repos";
 
     private final RestClient restClient;
     private final GitHubProperties gitHubProperties;
@@ -50,6 +54,20 @@ public class GitHubClient implements GitHubApiPort {
                 Instant.now().plusSeconds(tokenResponse.expiresIn()),
                 Instant.now().plusSeconds(tokenResponse.refreshTokenExpiresIn())
         );
+    }
+
+    @Override
+    public List<GitHubRepositoryDto> getRepositories(String accessToken, String username, int page, int pageSize) {
+        var repositoriesResponse = fetchRepositories(accessToken, username, page, pageSize);
+
+        return repositoriesResponse.stream()
+                .filter(r ->
+                        r.hasIssues() && !r.archived() && !r.disabled() && r.permissions().push()
+                )
+                .map(r ->
+                        new GitHubRepositoryDto(r.id(), r.name(), r.fullName(), r.owner().login())
+                )
+                .toList();
     }
 
     private GitHubTokenResponse fetchAccessToken(String code) {
@@ -103,6 +121,28 @@ public class GitHubClient implements GitHubApiPort {
         return response;
     }
 
+    private List<GitHubRepositoryResponse> fetchRepositories(
+            String accessToken,
+            String username,
+            int page,
+            int perPage
+    ) {
+        var response = restClient.get()
+                .uri(
+                        GITHUB_REPOS_URL + "?page={page}&per_page={perPage}&sort=updated",
+                        username, page, perPage
+                )
+                .header(HttpHeaders.ACCEPT, "application/vnd.github+json")
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
+                .retrieve()
+                .body(new ParameterizedTypeReference<List<GitHubRepositoryResponse>>() {});
+
+        if (response == null)
+            throw new GitHubApiException("Failed to obtain repositories from GitHub");
+
+        return response;
+    }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     private record GitHubTokenResponse(
             @JsonProperty("access_token") String accessToken,
@@ -115,6 +155,28 @@ public class GitHubClient implements GitHubApiPort {
     private record GitHubUserResponse(
             @JsonProperty("id") long id,
             @JsonProperty("login") String login
+    ) {}
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private record GitHubRepositoryResponse(
+            @JsonProperty("id") long id,
+            @JsonProperty("name") String name,
+            @JsonProperty("full_name") String fullName,
+            @JsonProperty("owner") GitHubOwnerResponse owner,
+            @JsonProperty("has_issues") boolean hasIssues,
+            @JsonProperty("archived") boolean archived,
+            @JsonProperty("disabled") boolean disabled,
+            @JsonProperty("permissions") GitHubPermissionsResponse permissions
+    ) {}
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private record GitHubOwnerResponse(
+            @JsonProperty("login") String login
+    ) {}
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private record GitHubPermissionsResponse(
+            @JsonProperty("push") boolean push
     ) {}
 
 }
