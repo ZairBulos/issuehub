@@ -3,6 +3,7 @@ package com.issuehub.modules.auth.infrastructure.adapters.in.messaging;
 import com.issuehub.ModuleIntegrationTest;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.repositories.EmailVerificationJpaRepository;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
+import com.issuehub.modules.auth.domain.events.EmailVerificationCreated;
 import com.issuehub.shared.domain.events.DeveloperCreated;
 import com.issuehub.shared.domain.model.EntityId;
 import org.junit.jupiter.api.Test;
@@ -40,10 +41,10 @@ class DeveloperCreatedListenerIT {
 
         // When/Then
         scenario.publish(event)
-                .andWaitForEventOfType(DeveloperCreated.class)
-                .toArriveAndVerify(developerCreated -> {
-                    assertThat(developerCreated.developerId()).isEqualTo(event.developerId());
-                    assertThat(developerCreated.developerEmail()).isEqualTo(event.developerEmail());
+                .andWaitForEventOfType(EmailVerificationCreated.class)
+                .toArriveAndVerify(emailVerificationCreated -> {
+                    assertThat(emailVerificationCreated.developerId()).isEqualTo(event.developerId());
+                    assertThat(emailVerificationCreated.developerEmail()).isEqualTo(event.developerEmail());
                 });
 
         var emailVerification = emailVerificationRepository.findByDeveloperId(event.developerId().value()).orElseThrow();
