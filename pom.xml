@@ -5,18 +5,18 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.10</version>
+		<version>3.5.14</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.issuehub</groupId>
 	<artifactId>issuehub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
 	<name>issuehub</name>
 	<description>Centralized issue intake and ticket management for development projects</description>
 	<url>https://github.com/ZairBulos/issuehub</url>
-	<licenses>
-		<license/>
-	</licenses>
+
 	<developers>
 		<developer>
 			<id>zairbulos</id>
@@ -38,7 +38,7 @@
 		<maven-failsafe-plugin.version>3.5.5</maven-failsafe-plugin.version>
 
 		<!-- Spring modulith -->
-		<spring-modulith.version>1.4.7</spring-modulith.version>
+		<spring-modulith.version>1.4.11</spring-modulith.version>
 
 		<!-- ArchUnit -->
 		<archunit.version>1.4.1</archunit.version>
@@ -49,6 +49,9 @@
 
 		<!-- JWT -->
 		<jwt.version>4.5.1</jwt.version>
+
+		<!-- Spring dotenv -->
+		<spring-dotenv.version>5.1.0</spring-dotenv.version>
 
 		<!-- Encode -->
 		<encoding>UTF-8</encoding>
@@ -96,8 +99,8 @@
 
 		<dependency>
 			<groupId>me.paulschwarz</groupId>
-			<artifactId>spring-dotenv</artifactId>
-			<version>4.0.0</version>
+			<artifactId>springboot3-dotenv</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>com.auth0</groupId>
@@ -163,12 +166,20 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.modulith</groupId>
 				<artifactId>spring-modulith-bom</artifactId>
 				<version>${spring-modulith.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>me.paulschwarz</groupId>
+				<artifactId>spring-dotenv-bom</artifactId>
+				<version>${spring-dotenv.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
