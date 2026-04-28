@@ -49,9 +49,21 @@ IssueHub is a centralized issue intake and ticket management system for developm
 
 ## Commands
 
+### Run application
+
+````shell
+./mvnw spring-boot:run
+````
+
+### JFR (Java Flight Recorder)
+
+````shell
+jcmd <PID> JFR.dump name=issuehub filename=issuehub.jfr
+````
+
 ### Testing
 
-```shell
+````shell
 # Run unit tests only
 mvn clean test
 
@@ -60,11 +72,11 @@ mvn clean verify
 
 # Run integration tests only
 mvn failsafe:integration-test
-```
+````
 
 ###  Database
 
-```shell
+````shell
 # Access the database
 docker exec -it issuehub-postgres psql -U postgres -d issuehub_db
-```
+````
