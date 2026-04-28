@@ -114,7 +114,6 @@ class GitHubOAuthControllerIT {
 
     // === repositories ===
     @Nested
-    @Sql({CLEAN_DB, DATA_DB})
     class GetRepositories {
 
         private static final String REPOSITORIES = GitHubOAuthController.INTEGRATIONS_GITHUB + GitHubOAuthController.REPOSITORIES;
