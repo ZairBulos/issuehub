@@ -3,7 +3,7 @@ package com.issuehub.modules.developers.application.services;
 import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

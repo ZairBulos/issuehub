@@ -1,7 +1,7 @@
 package com.issuehub.modules.auth.domain.events;
 
 import com.issuehub.shared.domain.events.DomainEvent;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 
 import java.time.Instant;
 

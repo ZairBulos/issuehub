@@ -6,7 +6,7 @@ import com.issuehub.modules.developers.domain.models.aggregates.Developer;
 import com.issuehub.modules.developers.domain.models.enums.DeveloperStatus;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperProfile;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

@@ -2,8 +2,8 @@ package com.issuehub.modules.integrations.domain.models.aggregates;
 
 import com.issuehub.modules.integrations.domain.models.enums.OAuthProvider;
 import com.issuehub.modules.integrations.domain.models.valueobjects.*;
-import com.issuehub.shared.domain.model.AggregateRoot;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.AggregateRoot;
+import com.issuehub.shared.domain.models.EntityId;
 
 import java.time.Instant;
 

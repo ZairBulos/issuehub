@@ -1,7 +1,7 @@
-package com.issuehub.shared.infrastructure.config.security;
+package com.issuehub.shared.infrastructure.configs.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.issuehub.shared.infrastructure.adapters.in.http.dto.ErrorResponse;
+import com.issuehub.shared.infrastructure.adapters.in.http.responses.ErrorResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

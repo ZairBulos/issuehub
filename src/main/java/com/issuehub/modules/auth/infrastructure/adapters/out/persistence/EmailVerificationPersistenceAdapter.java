@@ -4,7 +4,7 @@ import com.issuehub.modules.auth.application.ports.out.EmailVerificationReposito
 import com.issuehub.modules.auth.domain.models.aggregates.EmailVerification;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.mappers.EmailVerificationMapper;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.repositories.EmailVerificationJpaRepository;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

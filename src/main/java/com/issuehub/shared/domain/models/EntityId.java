@@ -1,4 +1,4 @@
-package com.issuehub.shared.domain.model;
+package com.issuehub.shared.domain.models;
 
 import java.util.Objects;
 import java.util.UUID;

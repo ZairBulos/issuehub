@@ -1,4 +1,4 @@
-package com.issuehub.shared.application.dto;
+package com.issuehub.shared.application.ports.security;
 
 import java.time.Instant;
 import java.util.Map;

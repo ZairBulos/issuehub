@@ -4,7 +4,7 @@ import com.issuehub.modules.auth.application.ports.out.LoginVerificationReposito
 import com.issuehub.modules.auth.domain.models.aggregates.LoginVerification;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.mappers.LoginVerificationMapper;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.repositories.LoginVerificationJpaRepository;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

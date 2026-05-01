@@ -4,7 +4,7 @@ import com.issuehub.modules.integrations.application.exceptions.AccountBlockedEx
 import com.issuehub.modules.integrations.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
 import com.issuehub.modules.integrations.application.exceptions.OAuthConnectionNotFoundException;
-import com.issuehub.shared.infrastructure.adapters.in.http.dto.ErrorResponse;
+import com.issuehub.shared.infrastructure.adapters.in.http.responses.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

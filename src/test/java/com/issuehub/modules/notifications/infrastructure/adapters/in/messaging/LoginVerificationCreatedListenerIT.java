@@ -2,7 +2,7 @@ package com.issuehub.modules.notifications.infrastructure.adapters.in.messaging;
 
 import com.issuehub.ModuleIntegrationTest;
 import com.issuehub.modules.auth.domain.events.LoginVerificationCreated;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.Test;
 import org.springframework.modulith.test.Scenario;
 

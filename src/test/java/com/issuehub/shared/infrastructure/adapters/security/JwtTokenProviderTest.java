@@ -1,7 +1,7 @@
 package com.issuehub.shared.infrastructure.adapters.security;
 
 import com.issuehub.shared.application.exceptions.InvalidTokenException;
-import com.issuehub.shared.infrastructure.config.security.JwtProperties;
+import com.issuehub.shared.infrastructure.configs.security.JwtProperties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -6,8 +6,8 @@ import com.issuehub.modules.auth.domain.exceptions.VerificationCodeExpiredExcept
 import com.issuehub.modules.auth.domain.models.valueobjects.HashedVerificationCode;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationExpiration;
-import com.issuehub.shared.domain.model.AggregateRoot;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.AggregateRoot;
+import com.issuehub.shared.domain.models.EntityId;
 
 import java.time.Instant;
 import java.util.function.BiPredicate;

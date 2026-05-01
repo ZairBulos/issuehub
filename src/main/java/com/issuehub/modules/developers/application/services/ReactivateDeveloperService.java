@@ -3,7 +3,7 @@ package com.issuehub.modules.developers.application.services;
 import com.issuehub.modules.developers.application.exceptions.DeveloperNotFoundException;
 import com.issuehub.modules.developers.application.ports.in.internal.ReactivateDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 
 public class ReactivateDeveloperService implements ReactivateDeveloperUseCase {
 

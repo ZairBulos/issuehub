@@ -6,7 +6,7 @@ import com.issuehub.modules.developers.domain.models.aggregates.Developer;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.mappers.DeveloperMapper;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.repositories.DeveloperJpaRepository;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

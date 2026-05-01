@@ -8,7 +8,7 @@ import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperProfi
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.entities.DeveloperJpaEntity;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.entities.DeveloperProfileEmbeddable;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.projections.DeveloperProjection;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.springframework.stereotype.Component;
 
 @Component

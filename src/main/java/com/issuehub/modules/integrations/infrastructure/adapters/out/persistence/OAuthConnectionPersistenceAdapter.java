@@ -4,7 +4,7 @@ import com.issuehub.modules.integrations.application.ports.out.OAuthConnectionRe
 import com.issuehub.modules.integrations.domain.models.aggregates.OAuthConnection;
 import com.issuehub.modules.integrations.infrastructure.adapters.out.persistence.mappers.OAuthConnectionMapper;
 import com.issuehub.modules.integrations.infrastructure.adapters.out.persistence.repositories.OAuthConnectionJpaRepository;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,7 +1,7 @@
 package com.issuehub.modules.integrations.application.ports.out;
 
 import com.issuehub.modules.integrations.domain.models.aggregates.OAuthConnection;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 
 import java.util.Optional;
 

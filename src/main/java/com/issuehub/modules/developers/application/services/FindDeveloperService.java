@@ -5,7 +5,7 @@ import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmail
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByIdUseCase;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 
 import java.util.Optional;
 

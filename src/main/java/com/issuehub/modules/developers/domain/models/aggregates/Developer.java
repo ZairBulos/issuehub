@@ -5,8 +5,8 @@ import com.issuehub.modules.developers.domain.exceptions.DeveloperDeletedExcepti
 import com.issuehub.modules.developers.domain.models.enums.DeveloperStatus;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperProfile;
-import com.issuehub.shared.domain.model.AggregateRoot;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.AggregateRoot;
+import com.issuehub.shared.domain.models.EntityId;
 
 import java.time.Instant;
 

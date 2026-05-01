@@ -5,7 +5,7 @@ import com.issuehub.modules.auth.domain.models.valueobjects.IpAddress;
 import com.issuehub.modules.auth.domain.models.valueobjects.RefreshToken;
 import com.issuehub.modules.auth.domain.models.valueobjects.RefreshTokenExpiration;
 import com.issuehub.modules.auth.domain.models.valueobjects.UserAgent;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

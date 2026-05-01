@@ -5,7 +5,7 @@ import com.issuehub.modules.auth.domain.exceptions.VerificationCodeAlreadyUsedEx
 import com.issuehub.modules.auth.domain.exceptions.VerificationCodeExpiredException;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationExpiration;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;

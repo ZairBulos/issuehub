@@ -1,7 +1,7 @@
 package com.issuehub.modules.auth.application.ports.out;
 
 import com.issuehub.modules.auth.domain.models.aggregates.LoginVerification;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 
 import java.util.Optional;
 

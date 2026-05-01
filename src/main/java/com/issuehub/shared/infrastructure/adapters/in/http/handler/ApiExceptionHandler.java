@@ -2,7 +2,7 @@ package com.issuehub.shared.infrastructure.adapters.in.http.handler;
 
 import com.issuehub.shared.application.exceptions.ApplicationException;
 import com.issuehub.shared.domain.exceptions.DomainException;
-import com.issuehub.shared.infrastructure.adapters.in.http.dto.ErrorResponse;
+import com.issuehub.shared.infrastructure.adapters.in.http.responses.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

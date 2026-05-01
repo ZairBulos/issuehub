@@ -12,7 +12,7 @@ import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
 import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.LoginRequest;
 import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.LoginResponse;
 import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.RequestLoginRequest;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

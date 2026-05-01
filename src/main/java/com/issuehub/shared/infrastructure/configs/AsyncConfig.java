@@ -1,4 +1,4 @@
-package com.issuehub.shared.infrastructure.config;
+package com.issuehub.shared.infrastructure.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;

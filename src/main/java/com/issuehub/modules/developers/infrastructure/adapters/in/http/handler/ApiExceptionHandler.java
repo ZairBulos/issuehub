@@ -6,7 +6,7 @@ import com.issuehub.modules.developers.domain.exceptions.DeveloperBlockedExcepti
 import com.issuehub.modules.developers.domain.exceptions.DeveloperDeletedException;
 import com.issuehub.modules.developers.domain.exceptions.InvalidDeveloperEmailException;
 import com.issuehub.modules.developers.domain.exceptions.InvalidDeveloperProfileException;
-import com.issuehub.shared.infrastructure.adapters.in.http.dto.ErrorResponse;
+import com.issuehub.shared.infrastructure.adapters.in.http.responses.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

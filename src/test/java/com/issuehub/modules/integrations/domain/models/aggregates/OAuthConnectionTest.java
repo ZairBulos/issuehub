@@ -5,7 +5,7 @@ import com.issuehub.modules.integrations.domain.models.valueobjects.EncryptedOAu
 import com.issuehub.modules.integrations.domain.models.valueobjects.OAuthTokenExpiration;
 import com.issuehub.modules.integrations.domain.models.valueobjects.ProviderUserId;
 import com.issuehub.modules.integrations.domain.models.valueobjects.ProviderUsername;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;

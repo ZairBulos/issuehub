@@ -4,7 +4,7 @@ import com.issuehub.modules.auth.domain.models.aggregates.EmailVerification;
 import com.issuehub.modules.auth.domain.models.valueobjects.HashedVerificationCode;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationExpiration;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.entities.EmailVerificationJpaEntity;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.springframework.stereotype.Component;
 
 @Component

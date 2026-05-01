@@ -1,4 +1,4 @@
-package com.issuehub.shared.infrastructure.config.security;
+package com.issuehub.shared.infrastructure.configs.security;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

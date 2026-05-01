@@ -1,6 +1,6 @@
 package com.issuehub.modules.developers.domain.exceptions;
 
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 
 public class DeveloperDeletedException extends RuntimeException {
 

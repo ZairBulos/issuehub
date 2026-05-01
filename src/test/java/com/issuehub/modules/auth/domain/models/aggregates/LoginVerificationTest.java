@@ -5,7 +5,7 @@ import com.issuehub.modules.auth.domain.exceptions.LoginCodeAlreadyUsedException
 import com.issuehub.modules.auth.domain.exceptions.LoginCodeExpiredException;
 import com.issuehub.modules.auth.domain.models.valueobjects.LoginCode;
 import com.issuehub.modules.auth.domain.models.valueobjects.LoginCodeExpiration;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;

@@ -7,7 +7,7 @@ import com.issuehub.modules.auth.domain.models.valueobjects.IpAddress;
 import com.issuehub.modules.auth.domain.models.valueobjects.RefreshTokenExpiration;
 import com.issuehub.modules.auth.domain.models.valueobjects.UserAgent;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.entities.AuthSessionJpaEntity;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.springframework.stereotype.Component;
 
 import java.net.InetAddress;

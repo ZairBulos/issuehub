@@ -1,8 +1,8 @@
-package com.issuehub.shared.infrastructure.config;
+package com.issuehub.shared.infrastructure.configs;
 
 import com.issuehub.shared.infrastructure.adapters.in.security.JwtAuthenticationFilter;
-import com.issuehub.shared.infrastructure.config.security.RestAccessDeniedHandler;
-import com.issuehub.shared.infrastructure.config.security.RestAuthenticationEntryPoint;
+import com.issuehub.shared.infrastructure.configs.security.RestAccessDeniedHandler;
+import com.issuehub.shared.infrastructure.configs.security.RestAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -5,7 +5,7 @@ import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.reposit
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.modules.auth.domain.events.EmailVerificationCreated;
 import com.issuehub.shared.domain.events.DeveloperCreated;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.modulith.test.Scenario;

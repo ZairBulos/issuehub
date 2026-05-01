@@ -7,7 +7,7 @@ import com.issuehub.modules.auth.domain.models.aggregates.EmailVerification;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationExpiration;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

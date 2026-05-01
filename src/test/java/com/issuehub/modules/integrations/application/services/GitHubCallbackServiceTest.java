@@ -10,7 +10,7 @@ import com.issuehub.modules.integrations.application.exceptions.GitHubApiExcepti
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
 import com.issuehub.modules.integrations.application.ports.out.OAuthConnectionRepositoryPort;
 import com.issuehub.modules.integrations.application.ports.security.EncryptionPort;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

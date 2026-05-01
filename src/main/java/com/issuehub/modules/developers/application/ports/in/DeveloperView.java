@@ -1,6 +1,6 @@
 package com.issuehub.modules.developers.application.ports.in;
 
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 
 public record DeveloperView(
         EntityId id,

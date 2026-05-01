@@ -7,7 +7,7 @@ import com.issuehub.modules.auth.application.ports.out.LoginVerificationReposito
 import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

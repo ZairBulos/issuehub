@@ -1,7 +1,5 @@
 package com.issuehub.shared.application.ports.security;
 
-import com.issuehub.shared.application.dto.DecodedToken;
-
 import java.util.Map;
 
 public interface TokenProviderPort {

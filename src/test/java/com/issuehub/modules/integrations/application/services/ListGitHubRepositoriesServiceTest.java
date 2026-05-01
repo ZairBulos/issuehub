@@ -15,7 +15,7 @@ import com.issuehub.modules.integrations.domain.models.aggregates.OAuthConnectio
 import com.issuehub.modules.integrations.domain.models.enums.OAuthProvider;
 import com.issuehub.modules.integrations.domain.models.valueobjects.EncryptedOAuthToken;
 import com.issuehub.modules.integrations.domain.models.valueobjects.ProviderUsername;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

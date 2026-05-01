@@ -1,4 +1,4 @@
-package com.issuehub.shared.infrastructure.adapters.in.http.dto;
+package com.issuehub.shared.infrastructure.adapters.in.http.responses;
 
 import java.time.Instant;
 import java.util.List;

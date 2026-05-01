@@ -7,7 +7,7 @@ import com.issuehub.modules.integrations.domain.models.valueobjects.OAuthTokenEx
 import com.issuehub.modules.integrations.domain.models.valueobjects.ProviderUserId;
 import com.issuehub.modules.integrations.domain.models.valueobjects.ProviderUsername;
 import com.issuehub.modules.integrations.infrastructure.adapters.out.persistence.entities.OAuthConnectionJpaEntity;
-import com.issuehub.shared.domain.model.EntityId;
+import com.issuehub.shared.domain.models.EntityId;
 import org.springframework.stereotype.Component;
 
 @Component
