@@ -1,4 +1,4 @@
-package com.issuehub.modules.auth.infrastructure.adapters.in.http.controller;
+package com.issuehub.modules.auth.infrastructure.adapters.in.http.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.issuehub.modules.auth.application.ports.in.AuthTokensResult;
@@ -12,8 +12,8 @@ import com.issuehub.modules.auth.application.ports.in.RequestLoginUseCase;
 import com.issuehub.modules.auth.application.ports.in.VerifyEmailUseCase;
 import com.issuehub.modules.auth.domain.exceptions.*;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
-import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.LoginRequest;
-import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.RequestLoginRequest;
+import com.issuehub.modules.auth.infrastructure.adapters.in.http.requests.LoginRequest;
+import com.issuehub.modules.auth.infrastructure.adapters.in.http.requests.RequestLoginRequest;
 import com.issuehub.shared.application.ports.security.TokenProviderPort;
 import com.issuehub.shared.domain.models.EntityId;
 import com.issuehub.shared.infrastructure.configs.SecurityConfig;

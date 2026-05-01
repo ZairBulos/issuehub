@@ -1,4 +1,4 @@
-package com.issuehub.modules.auth.infrastructure.config;
+package com.issuehub.modules.auth.infrastructure.configs;
 
 import com.issuehub.modules.auth.application.ports.in.LoginUseCase;
 import com.issuehub.modules.auth.application.ports.in.RequestLoginUseCase;

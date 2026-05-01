@@ -1,4 +1,4 @@
-package com.issuehub.modules.auth.infrastructure.adapters.in.http.controller;
+package com.issuehub.modules.auth.infrastructure.adapters.in.http.controllers;
 
 import com.issuehub.modules.auth.application.ports.in.LoginCommand;
 import com.issuehub.modules.auth.application.ports.in.VerifyEmailCommand;
@@ -9,9 +9,9 @@ import com.issuehub.modules.auth.domain.models.valueobjects.IpAddress;
 import com.issuehub.modules.auth.domain.models.valueobjects.LoginCode;
 import com.issuehub.modules.auth.domain.models.valueobjects.UserAgent;
 import com.issuehub.modules.auth.domain.models.valueobjects.VerificationCode;
-import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.LoginRequest;
-import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.LoginResponse;
-import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.RequestLoginRequest;
+import com.issuehub.modules.auth.infrastructure.adapters.in.http.requests.LoginRequest;
+import com.issuehub.modules.auth.infrastructure.adapters.in.http.responses.LoginResponse;
+import com.issuehub.modules.auth.infrastructure.adapters.in.http.requests.RequestLoginRequest;
 import com.issuehub.shared.domain.models.EntityId;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;

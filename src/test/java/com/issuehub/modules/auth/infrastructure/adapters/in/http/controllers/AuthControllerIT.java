@@ -1,9 +1,9 @@
-package com.issuehub.modules.auth.infrastructure.adapters.in.http.controller;
+package com.issuehub.modules.auth.infrastructure.adapters.in.http.controllers;
 
 import com.issuehub.IntegrationTest;
-import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.LoginRequest;
-import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.LoginResponse;
-import com.issuehub.modules.auth.infrastructure.adapters.in.http.dto.RequestLoginRequest;
+import com.issuehub.modules.auth.infrastructure.adapters.in.http.requests.LoginRequest;
+import com.issuehub.modules.auth.infrastructure.adapters.in.http.responses.LoginResponse;
+import com.issuehub.modules.auth.infrastructure.adapters.in.http.requests.RequestLoginRequest;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.repositories.AuthSessionJpaRepository;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.repositories.EmailVerificationJpaRepository;
 import com.issuehub.modules.auth.infrastructure.adapters.out.persistence.repositories.LoginVerificationJpaRepository;

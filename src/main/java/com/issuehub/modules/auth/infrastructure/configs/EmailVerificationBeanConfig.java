@@ -1,4 +1,4 @@
-package com.issuehub.modules.auth.infrastructure.config;
+package com.issuehub.modules.auth.infrastructure.configs;
 
 import com.issuehub.modules.auth.application.ports.in.CreateEmailVerificationUseCase;
 import com.issuehub.modules.auth.application.ports.in.VerifyEmailUseCase;

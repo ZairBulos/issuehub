@@ -1,4 +1,4 @@
-package com.issuehub.modules.auth.infrastructure.adapters.in.http.dto;
+package com.issuehub.modules.auth.infrastructure.adapters.in.http.responses;
 
 import com.issuehub.modules.auth.application.ports.in.AuthTokensResult;
 

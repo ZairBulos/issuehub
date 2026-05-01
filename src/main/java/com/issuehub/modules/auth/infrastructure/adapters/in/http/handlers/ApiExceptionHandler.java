@@ -1,4 +1,4 @@
-package com.issuehub.modules.auth.infrastructure.adapters.in.http.handler;
+package com.issuehub.modules.auth.infrastructure.adapters.in.http.handlers;
 
 import com.issuehub.modules.auth.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotFoundException;
