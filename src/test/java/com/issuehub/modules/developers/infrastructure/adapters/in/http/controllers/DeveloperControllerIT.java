@@ -1,8 +1,8 @@
-package com.issuehub.modules.developers.infrastructure.adapters.in.http.controller;
+package com.issuehub.modules.developers.infrastructure.adapters.in.http.controllers;
 
 import com.issuehub.IntegrationTest;
 import com.issuehub.modules.developers.application.ports.in.internal.DeveloperDetails;
-import com.issuehub.modules.developers.infrastructure.adapters.in.http.dto.CreateDeveloperRequest;
+import com.issuehub.modules.developers.infrastructure.adapters.in.http.requests.CreateDeveloperRequest;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.repositories.DeveloperJpaRepository;
 import com.issuehub.shared.application.ports.security.TokenProviderPort;
 import org.junit.jupiter.api.Nested;

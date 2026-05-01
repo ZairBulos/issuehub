@@ -1,4 +1,4 @@
-package com.issuehub.modules.developers.infrastructure.adapters.in.http.controller;
+package com.issuehub.modules.developers.infrastructure.adapters.in.http.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperCommand;
@@ -9,7 +9,7 @@ import com.issuehub.modules.developers.application.ports.in.internal.CreateDevel
 import com.issuehub.modules.developers.application.ports.in.internal.GetDeveloperUseCase;
 import com.issuehub.modules.developers.domain.exceptions.InvalidDeveloperEmailException;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
-import com.issuehub.modules.developers.infrastructure.adapters.in.http.dto.CreateDeveloperRequest;
+import com.issuehub.modules.developers.infrastructure.adapters.in.http.requests.CreateDeveloperRequest;
 import com.issuehub.shared.application.ports.security.DecodedToken;
 import com.issuehub.shared.application.exceptions.InvalidTokenException;
 import com.issuehub.shared.application.ports.security.TokenProviderPort;

@@ -1,4 +1,4 @@
-package com.issuehub.modules.developers.infrastructure.adapters.in.http.handler;
+package com.issuehub.modules.developers.infrastructure.adapters.in.http.handlers;
 
 import com.issuehub.modules.developers.application.exceptions.DeveloperAlreadyExistsException;
 import com.issuehub.modules.developers.application.exceptions.DeveloperNotFoundException;

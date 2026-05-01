@@ -1,11 +1,11 @@
-package com.issuehub.modules.developers.infrastructure.adapters.in.http.controller;
+package com.issuehub.modules.developers.infrastructure.adapters.in.http.controllers;
 
 import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperCommand;
 import com.issuehub.modules.developers.application.ports.in.internal.DeveloperDetails;
 import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.in.internal.GetDeveloperUseCase;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
-import com.issuehub.modules.developers.infrastructure.adapters.in.http.dto.CreateDeveloperRequest;
+import com.issuehub.modules.developers.infrastructure.adapters.in.http.requests.CreateDeveloperRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
