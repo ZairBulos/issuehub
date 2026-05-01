@@ -1,8 +1,8 @@
-package com.issuehub.modules.integrations.application.dto;
+package com.issuehub.modules.integrations.application.ports.out;
 
 import java.time.Instant;
 
-public record GitHubRefreshedTokenDto(
+public record GitHubRefreshedTokenDetails(
         String accessToken,
         String refreshToken,
         Instant accessTokenExpiresAt,

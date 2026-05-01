@@ -2,9 +2,9 @@ package com.issuehub.modules.integrations.infrastructure.adapters.out.http;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.issuehub.modules.integrations.application.dto.GitHubAccountDto;
-import com.issuehub.modules.integrations.application.dto.GitHubRefreshedTokenDto;
-import com.issuehub.modules.integrations.application.dto.GitHubRepositoryDto;
+import com.issuehub.modules.integrations.application.ports.out.GitHubAccountDetails;
+import com.issuehub.modules.integrations.application.ports.out.GitHubRefreshedTokenDetails;
+import com.issuehub.modules.integrations.application.ports.in.GitHubRepositoryDetails;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
 import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
@@ -30,11 +30,11 @@ public class GitHubClient implements GitHubApiPort {
     private final GitHubProperties gitHubProperties;
 
     @Override
-    public GitHubAccountDto getAccount(String code) {
+    public GitHubAccountDetails getAccount(String code) {
         var tokenResponse = fetchAccessToken(code);
         var userResponse = fetchUser(tokenResponse.accessToken());
 
-        return new GitHubAccountDto(
+        return new GitHubAccountDetails(
                 String.valueOf(userResponse.id()),
                 userResponse.login(),
                 tokenResponse.accessToken(),
@@ -45,10 +45,10 @@ public class GitHubClient implements GitHubApiPort {
     }
 
     @Override
-    public GitHubRefreshedTokenDto refreshToken(String refreshToken) {
+    public GitHubRefreshedTokenDetails refreshToken(String refreshToken) {
         var tokenResponse = fetchRefreshToken(refreshToken);
 
-        return new GitHubRefreshedTokenDto(
+        return new GitHubRefreshedTokenDetails(
                 tokenResponse.accessToken(),
                 tokenResponse.refreshToken(),
                 Instant.now().plusSeconds(tokenResponse.expiresIn()),
@@ -57,7 +57,7 @@ public class GitHubClient implements GitHubApiPort {
     }
 
     @Override
-    public List<GitHubRepositoryDto> getRepositories(String accessToken, String username, int page, int pageSize) {
+    public List<GitHubRepositoryDetails> getRepositories(String accessToken, String username, int page, int pageSize) {
         var repositoriesResponse = fetchRepositories(accessToken, username, page, pageSize);
 
         return repositoriesResponse.stream()
@@ -65,7 +65,7 @@ public class GitHubClient implements GitHubApiPort {
                         r.hasIssues() && !r.archived() && !r.disabled() && r.permissions().push()
                 )
                 .map(r ->
-                        new GitHubRepositoryDto(r.id(), r.name(), r.fullName(), r.owner().login())
+                        new GitHubRepositoryDetails(r.id(), r.name(), r.fullName(), r.owner().login())
                 )
                 .toList();
     }

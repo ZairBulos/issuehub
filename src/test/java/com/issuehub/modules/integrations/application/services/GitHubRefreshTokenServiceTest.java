@@ -1,6 +1,6 @@
 package com.issuehub.modules.integrations.application.services;
 
-import com.issuehub.modules.integrations.application.dto.GitHubRefreshedTokenDto;
+import com.issuehub.modules.integrations.application.ports.out.GitHubRefreshedTokenDetails;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
 import com.issuehub.modules.integrations.application.ports.out.OAuthConnectionRepositoryPort;
@@ -43,7 +43,7 @@ class GitHubRefreshTokenServiceTest {
         when(connection.getEncryptedRefreshToken()).thenReturn(new EncryptedOAuthToken("encrypted-refresh"));
         when(encryptionPort.decrypt("encrypted-refresh")).thenReturn("raw-refresh-token");
 
-        when(gitHubApiPort.refreshToken("raw-refresh-token")).thenReturn(new GitHubRefreshedTokenDto(
+        when(gitHubApiPort.refreshToken("raw-refresh-token")).thenReturn(new GitHubRefreshedTokenDetails(
                 "ghu_newaccesstoken",
                 "ghr_newrefreshtoken",
                 Instant.now().plusSeconds(28800),

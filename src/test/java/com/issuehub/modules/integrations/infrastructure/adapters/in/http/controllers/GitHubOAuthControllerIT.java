@@ -1,8 +1,8 @@
 package com.issuehub.modules.integrations.infrastructure.adapters.in.http.controllers;
 
 import com.issuehub.IntegrationTest;
-import com.issuehub.modules.integrations.application.dto.GitHubAccountDto;
-import com.issuehub.modules.integrations.application.dto.GitHubRepositoryDto;
+import com.issuehub.modules.integrations.application.ports.out.GitHubAccountDetails;
+import com.issuehub.modules.integrations.application.ports.in.GitHubRepositoryDetails;
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
 import com.issuehub.modules.integrations.infrastructure.adapters.out.persistence.repositories.OAuthConnectionJpaRepository;
 import com.issuehub.shared.application.ports.security.TokenProviderPort;
@@ -60,8 +60,8 @@ class GitHubOAuthControllerIT {
             return new HttpEntity<>(headers);
         }
 
-        private GitHubAccountDto githubAccount() {
-            return new GitHubAccountDto(
+        private GitHubAccountDetails githubAccount() {
+            return new GitHubAccountDetails(
                     "12345678",
                     "it_test",
                     "ghu_accesstoken",
@@ -134,7 +134,7 @@ class GitHubOAuthControllerIT {
         void repositories_shouldReturn200_whenConnectionExists() {
             // Given
             when(gitHubApiPort.getRepositories(any(), any(), anyInt(), anyInt()))
-                    .thenReturn(List.of(new GitHubRepositoryDto(1L, "my-repo", "it_test/my-repo", "it_test")));
+                    .thenReturn(List.of(new GitHubRepositoryDetails(1L, "my-repo", "it_test/my-repo", "it_test")));
 
             // When
             var response = restTemplate.exchange(

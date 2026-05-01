@@ -1,4 +1,4 @@
-package com.issuehub.modules.integrations.application.dto;
+package com.issuehub.modules.integrations.application.ports.in;
 
 public record GitHubCallbackCommand(
         String code,

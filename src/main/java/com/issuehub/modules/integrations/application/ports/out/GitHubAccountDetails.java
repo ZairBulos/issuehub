@@ -1,8 +1,8 @@
-package com.issuehub.modules.integrations.application.dto;
+package com.issuehub.modules.integrations.application.ports.out;
 
 import java.time.Instant;
 
-public record GitHubAccountDto(
+public record GitHubAccountDetails(
         String userId,
         String username,
         String accessToken,

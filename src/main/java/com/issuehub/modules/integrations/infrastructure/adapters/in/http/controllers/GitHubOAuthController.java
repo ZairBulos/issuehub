@@ -1,8 +1,8 @@
 package com.issuehub.modules.integrations.infrastructure.adapters.in.http.controllers;
 
-import com.issuehub.modules.integrations.application.dto.GitHubCallbackCommand;
-import com.issuehub.modules.integrations.application.dto.GitHubRepositoryDto;
-import com.issuehub.modules.integrations.application.dto.ListGitHubRepositoriesQuery;
+import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackCommand;
+import com.issuehub.modules.integrations.application.ports.in.GitHubRepositoryDetails;
+import com.issuehub.modules.integrations.application.ports.in.ListGitHubRepositoriesQuery;
 import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackUseCase;
 import com.issuehub.modules.integrations.application.ports.in.ListGitHubRepositoriesUseCase;
 import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
@@ -72,7 +72,7 @@ public class GitHubOAuthController {
 
     @GetMapping(REPOSITORIES)
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<PagedResponse<GitHubRepositoryDto>> listRepositories(
+    public ResponseEntity<PagedResponse<GitHubRepositoryDetails>> listRepositories(
             @AuthenticationPrincipal final String email,
             @RequestParam final String providerUserId,
             @RequestParam(defaultValue = "1") final int page,

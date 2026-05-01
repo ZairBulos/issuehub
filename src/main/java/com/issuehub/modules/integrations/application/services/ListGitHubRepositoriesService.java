@@ -1,8 +1,8 @@
 package com.issuehub.modules.integrations.application.services;
 
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
-import com.issuehub.modules.integrations.application.dto.GitHubRepositoryDto;
-import com.issuehub.modules.integrations.application.dto.ListGitHubRepositoriesQuery;
+import com.issuehub.modules.integrations.application.ports.in.GitHubRepositoryDetails;
+import com.issuehub.modules.integrations.application.ports.in.ListGitHubRepositoriesQuery;
 import com.issuehub.modules.integrations.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.integrations.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.integrations.application.exceptions.OAuthConnectionNotFoundException;
@@ -37,7 +37,7 @@ public class ListGitHubRepositoriesService implements ListGitHubRepositoriesUseC
     }
 
     @Override
-    public List<GitHubRepositoryDto> execute(ListGitHubRepositoriesQuery query) {
+    public List<GitHubRepositoryDetails> execute(ListGitHubRepositoriesQuery query) {
         // RN: Developer must exist
         var developer = findDeveloperByEmailUseCase.execute(query.developerEmail())
                 .orElseThrow(() -> new AccountNotFoundException("Developer not found"));

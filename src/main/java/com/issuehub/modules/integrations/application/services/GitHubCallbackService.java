@@ -1,7 +1,7 @@
 package com.issuehub.modules.integrations.application.services;
 
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
-import com.issuehub.modules.integrations.application.dto.GitHubCallbackCommand;
+import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackCommand;
 import com.issuehub.modules.integrations.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.integrations.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackUseCase;

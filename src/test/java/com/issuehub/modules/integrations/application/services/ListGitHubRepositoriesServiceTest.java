@@ -2,8 +2,8 @@ package com.issuehub.modules.integrations.application.services;
 
 import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
-import com.issuehub.modules.integrations.application.dto.GitHubRepositoryDto;
-import com.issuehub.modules.integrations.application.dto.ListGitHubRepositoriesQuery;
+import com.issuehub.modules.integrations.application.ports.in.GitHubRepositoryDetails;
+import com.issuehub.modules.integrations.application.ports.in.ListGitHubRepositoriesQuery;
 import com.issuehub.modules.integrations.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.integrations.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
@@ -82,7 +82,7 @@ class ListGitHubRepositoriesServiceTest {
         var developer = activeDeveloper();
         var connection = connection();
         var repositories = List.of(
-                new GitHubRepositoryDto(1L, "repo", "octocat/repo", "octocat")
+                new GitHubRepositoryDetails(1L, "repo", "octocat/repo", "octocat")
         );
 
         when(findDeveloperByEmailUseCase.execute(EMAIL)).thenReturn(Optional.of(developer));

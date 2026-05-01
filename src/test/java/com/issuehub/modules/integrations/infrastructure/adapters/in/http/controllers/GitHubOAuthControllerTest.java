@@ -1,6 +1,6 @@
 package com.issuehub.modules.integrations.infrastructure.adapters.in.http.controllers;
 
-import com.issuehub.modules.integrations.application.dto.GitHubRepositoryDto;
+import com.issuehub.modules.integrations.application.ports.in.GitHubRepositoryDetails;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
 import com.issuehub.modules.integrations.application.exceptions.OAuthConnectionNotFoundException;
 import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackUseCase;
@@ -188,7 +188,7 @@ class GitHubOAuthControllerTest {
         void repositories_shouldReturn200WithPagedResponse_whenAuthenticated() throws Exception {
             // Given
             when(listGitHubRepositoriesUseCase.execute(any())).thenReturn(List.of(
-                    new GitHubRepositoryDto(1L, "repo", "octocat/repo", "octocat")
+                    new GitHubRepositoryDetails(1L, "repo", "octocat/repo", "octocat")
             ));
 
             // When/Then

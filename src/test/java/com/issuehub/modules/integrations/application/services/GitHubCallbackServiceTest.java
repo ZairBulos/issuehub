@@ -2,8 +2,8 @@ package com.issuehub.modules.integrations.application.services;
 
 import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
-import com.issuehub.modules.integrations.application.dto.GitHubCallbackCommand;
-import com.issuehub.modules.integrations.application.dto.GitHubAccountDto;
+import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackCommand;
+import com.issuehub.modules.integrations.application.ports.out.GitHubAccountDetails;
 import com.issuehub.modules.integrations.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.integrations.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
@@ -62,7 +62,7 @@ class GitHubCallbackServiceTest {
         var developer = activeDeveloper();
 
         when(findDeveloperByEmailUseCase.execute(EMAIL)).thenReturn(Optional.of(developer));
-        when(gitHubApiPort.getAccount(CODE)).thenReturn(new GitHubAccountDto(
+        when(gitHubApiPort.getAccount(CODE)).thenReturn(new GitHubAccountDetails(
                 "12345678",
                 "test",
                 "ghu_accesstoken",
