@@ -5,7 +5,7 @@ import com.issuehub.modules.integrations.application.exceptions.GitHubApiExcepti
 import com.issuehub.modules.integrations.application.exceptions.OAuthConnectionNotFoundException;
 import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackUseCase;
 import com.issuehub.modules.integrations.application.ports.in.ListGitHubRepositoriesUseCase;
-import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
+import com.issuehub.modules.integrations.infrastructure.configs.GitHubProperties;
 import com.issuehub.shared.application.ports.security.DecodedToken;
 import com.issuehub.shared.application.exceptions.InvalidTokenException;
 import com.issuehub.shared.application.ports.security.TokenProviderPort;

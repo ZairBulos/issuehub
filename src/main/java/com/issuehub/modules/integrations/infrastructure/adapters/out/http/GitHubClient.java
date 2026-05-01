@@ -7,7 +7,7 @@ import com.issuehub.modules.integrations.application.ports.out.GitHubRefreshedTo
 import com.issuehub.modules.integrations.application.ports.in.GitHubRepositoryDetails;
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
 import com.issuehub.modules.integrations.application.ports.out.GitHubApiPort;
-import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
+import com.issuehub.modules.integrations.infrastructure.configs.GitHubProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;

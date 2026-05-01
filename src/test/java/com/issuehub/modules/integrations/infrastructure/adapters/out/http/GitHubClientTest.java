@@ -1,7 +1,7 @@
 package com.issuehub.modules.integrations.infrastructure.adapters.out.http;
 
 import com.issuehub.modules.integrations.application.exceptions.GitHubApiException;
-import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
+import com.issuehub.modules.integrations.infrastructure.configs.GitHubProperties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

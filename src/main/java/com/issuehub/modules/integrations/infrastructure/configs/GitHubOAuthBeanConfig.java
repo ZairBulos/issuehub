@@ -1,4 +1,4 @@
-package com.issuehub.modules.integrations.infrastructure.config;
+package com.issuehub.modules.integrations.infrastructure.configs;
 
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackUseCase;

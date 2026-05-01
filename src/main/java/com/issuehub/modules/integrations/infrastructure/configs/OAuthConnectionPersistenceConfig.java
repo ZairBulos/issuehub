@@ -1,4 +1,4 @@
-package com.issuehub.modules.integrations.infrastructure.config;
+package com.issuehub.modules.integrations.infrastructure.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

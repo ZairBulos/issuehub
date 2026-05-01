@@ -1,4 +1,4 @@
-package com.issuehub.modules.integrations.infrastructure.config;
+package com.issuehub.modules.integrations.infrastructure.configs;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

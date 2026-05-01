@@ -2,7 +2,7 @@ package com.issuehub.modules.integrations.infrastructure.adapters.security;
 
 import com.issuehub.modules.integrations.application.exceptions.EncryptionException;
 import com.issuehub.modules.integrations.application.ports.security.EncryptionPort;
-import com.issuehub.modules.integrations.infrastructure.config.EncryptionProperties;
+import com.issuehub.modules.integrations.infrastructure.configs.EncryptionProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

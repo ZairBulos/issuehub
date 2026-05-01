@@ -1,7 +1,7 @@
 package com.issuehub.modules.integrations.infrastructure.adapters.security;
 
 import com.issuehub.modules.integrations.application.exceptions.EncryptionException;
-import com.issuehub.modules.integrations.infrastructure.config.EncryptionProperties;
+import com.issuehub.modules.integrations.infrastructure.configs.EncryptionProperties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

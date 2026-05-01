@@ -5,7 +5,7 @@ import com.issuehub.modules.integrations.application.ports.in.GitHubRepositoryDe
 import com.issuehub.modules.integrations.application.ports.in.ListGitHubRepositoriesQuery;
 import com.issuehub.modules.integrations.application.ports.in.GitHubCallbackUseCase;
 import com.issuehub.modules.integrations.application.ports.in.ListGitHubRepositoriesUseCase;
-import com.issuehub.modules.integrations.infrastructure.config.GitHubProperties;
+import com.issuehub.modules.integrations.infrastructure.configs.GitHubProperties;
 import com.issuehub.shared.infrastructure.adapters.in.http.responses.PagedResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
