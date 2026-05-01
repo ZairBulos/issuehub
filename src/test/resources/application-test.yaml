@@ -22,6 +22,9 @@ spring:
     compose:
       enabled: false
 
+springdotenv:
+  enabled: false
+
 jwt:
   secret: secret
   issuer: test
