@@ -1,6 +1,6 @@
 package com.issuehub.modules.developers.infrastructure.adapters.out.persistence.mappers;
 
-import com.issuehub.modules.developers.application.dto.DeveloperView;
+import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.domain.models.aggregates.Developer;
 import com.issuehub.modules.developers.domain.models.enums.DeveloperStatus;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;

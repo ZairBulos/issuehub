@@ -12,7 +12,7 @@ import com.issuehub.modules.auth.domain.models.valueobjects.IpAddress;
 import com.issuehub.modules.auth.domain.models.valueobjects.LoginCode;
 import com.issuehub.modules.auth.domain.models.valueobjects.LoginCodeExpiration;
 import com.issuehub.modules.auth.domain.models.valueobjects.UserAgent;
-import com.issuehub.modules.developers.application.dto.DeveloperView;
+import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
 import com.issuehub.shared.application.ports.security.TokenProviderPort;

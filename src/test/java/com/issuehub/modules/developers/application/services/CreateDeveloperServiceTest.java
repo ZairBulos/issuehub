@@ -1,6 +1,6 @@
 package com.issuehub.modules.developers.application.services;
 
-import com.issuehub.modules.developers.application.dto.internal.CreateDeveloperCommand;
+import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperCommand;
 import com.issuehub.modules.developers.application.exceptions.DeveloperAlreadyExistsException;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
 import com.issuehub.modules.developers.domain.models.aggregates.Developer;

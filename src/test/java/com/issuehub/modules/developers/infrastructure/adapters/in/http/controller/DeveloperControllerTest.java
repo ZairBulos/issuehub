@@ -1,8 +1,8 @@
 package com.issuehub.modules.developers.infrastructure.adapters.in.http.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.issuehub.modules.developers.application.dto.internal.CreateDeveloperCommand;
-import com.issuehub.modules.developers.application.dto.internal.DeveloperDTO;
+import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperCommand;
+import com.issuehub.modules.developers.application.ports.in.internal.DeveloperDetails;
 import com.issuehub.modules.developers.application.exceptions.DeveloperAlreadyExistsException;
 import com.issuehub.modules.developers.application.exceptions.DeveloperNotFoundException;
 import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperUseCase;
@@ -137,7 +137,7 @@ class DeveloperControllerTest {
         @Test
         void me_shouldReturn200Ok_withDeveloperDTO() throws Exception {
             // Given
-            var dto = new DeveloperDTO(
+            var dto = new DeveloperDetails(
                     UUID.randomUUID(),
                     "dev@example.com",
                     "Dev",

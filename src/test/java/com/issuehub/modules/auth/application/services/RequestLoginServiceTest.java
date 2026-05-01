@@ -4,7 +4,7 @@ import com.issuehub.modules.auth.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotVerifiedException;
 import com.issuehub.modules.auth.application.ports.out.LoginVerificationRepositoryPort;
-import com.issuehub.modules.developers.application.dto.DeveloperView;
+import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.shared.application.ports.out.EventPublisherPort;
 import com.issuehub.shared.domain.model.EntityId;

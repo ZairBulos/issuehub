@@ -1,6 +1,6 @@
 package com.issuehub.modules.developers.application.services;
 
-import com.issuehub.modules.developers.application.dto.DeveloperView;
+import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByIdUseCase;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;

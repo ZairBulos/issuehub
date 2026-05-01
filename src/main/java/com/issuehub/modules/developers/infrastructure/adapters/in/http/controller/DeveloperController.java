@@ -1,7 +1,7 @@
 package com.issuehub.modules.developers.infrastructure.adapters.in.http.controller;
 
-import com.issuehub.modules.developers.application.dto.internal.CreateDeveloperCommand;
-import com.issuehub.modules.developers.application.dto.internal.DeveloperDTO;
+import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperCommand;
+import com.issuehub.modules.developers.application.ports.in.internal.DeveloperDetails;
 import com.issuehub.modules.developers.application.ports.in.internal.CreateDeveloperUseCase;
 import com.issuehub.modules.developers.application.ports.in.internal.GetDeveloperUseCase;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;
@@ -39,7 +39,7 @@ public class DeveloperController {
 
     @GetMapping(ME)
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<DeveloperDTO> me(@AuthenticationPrincipal String email) {
+    public ResponseEntity<DeveloperDetails> me(@AuthenticationPrincipal String email) {
         log.info("Getting developer: {}", email);
 
         var developer = getDeveloperUseCase.execute(new DeveloperEmail(email));

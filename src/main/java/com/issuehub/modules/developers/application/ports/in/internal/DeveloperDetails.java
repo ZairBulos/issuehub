@@ -1,11 +1,11 @@
-package com.issuehub.modules.developers.application.dto.internal;
+package com.issuehub.modules.developers.application.ports.in.internal;
 
 import com.issuehub.modules.developers.domain.models.aggregates.Developer;
 
 import java.util.Map;
 import java.util.UUID;
 
-public record DeveloperDTO(
+public record DeveloperDetails(
         UUID id,
         String email,
         String name,
@@ -14,8 +14,8 @@ public record DeveloperDTO(
         Map<String, Boolean> notificationPreferences
 ) {
 
-    public static DeveloperDTO from(Developer developer) {
-        return new DeveloperDTO(
+    public static DeveloperDetails from(Developer developer) {
+        return new DeveloperDetails(
                 developer.getId().value(),
                 developer.getEmail().value(),
                 developer.getProfile().name(),

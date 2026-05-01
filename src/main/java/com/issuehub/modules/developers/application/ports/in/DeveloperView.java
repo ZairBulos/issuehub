@@ -1,4 +1,4 @@
-package com.issuehub.modules.developers.application.dto;
+package com.issuehub.modules.developers.application.ports.in;
 
 import com.issuehub.shared.domain.model.EntityId;
 

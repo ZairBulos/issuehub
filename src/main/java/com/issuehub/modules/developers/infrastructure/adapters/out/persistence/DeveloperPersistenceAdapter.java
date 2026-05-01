@@ -1,6 +1,6 @@
 package com.issuehub.modules.developers.infrastructure.adapters.out.persistence;
 
-import com.issuehub.modules.developers.application.dto.DeveloperView;
+import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.application.ports.out.DeveloperRepositoryPort;
 import com.issuehub.modules.developers.domain.models.aggregates.Developer;
 import com.issuehub.modules.developers.domain.models.valueobjects.DeveloperEmail;

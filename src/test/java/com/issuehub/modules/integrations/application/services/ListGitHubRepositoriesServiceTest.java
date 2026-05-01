@@ -1,6 +1,6 @@
 package com.issuehub.modules.integrations.application.services;
 
-import com.issuehub.modules.developers.application.dto.DeveloperView;
+import com.issuehub.modules.developers.application.ports.in.DeveloperView;
 import com.issuehub.modules.developers.application.ports.in.FindDeveloperByEmailUseCase;
 import com.issuehub.modules.integrations.application.dto.GitHubRepositoryDto;
 import com.issuehub.modules.integrations.application.dto.ListGitHubRepositoriesQuery;

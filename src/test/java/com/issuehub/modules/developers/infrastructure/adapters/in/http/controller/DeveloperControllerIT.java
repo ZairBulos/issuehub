@@ -1,7 +1,7 @@
 package com.issuehub.modules.developers.infrastructure.adapters.in.http.controller;
 
 import com.issuehub.IntegrationTest;
-import com.issuehub.modules.developers.application.dto.internal.DeveloperDTO;
+import com.issuehub.modules.developers.application.ports.in.internal.DeveloperDetails;
 import com.issuehub.modules.developers.infrastructure.adapters.in.http.dto.CreateDeveloperRequest;
 import com.issuehub.modules.developers.infrastructure.adapters.out.persistence.repositories.DeveloperJpaRepository;
 import com.issuehub.shared.application.ports.security.TokenProviderPort;
@@ -101,7 +101,7 @@ class DeveloperControllerIT {
                     DeveloperController.DEVELOPERS + DeveloperController.ME,
                     HttpMethod.GET,
                     authenticated(),
-                    DeveloperDTO.class
+                    DeveloperDetails.class
             );
 
             // Then
