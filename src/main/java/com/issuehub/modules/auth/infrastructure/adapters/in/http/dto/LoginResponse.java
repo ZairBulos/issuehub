@@ -1,6 +1,6 @@
 package com.issuehub.modules.auth.infrastructure.adapters.in.http.dto;
 
-import com.issuehub.modules.auth.application.dto.AuthTokensResult;
+import com.issuehub.modules.auth.application.ports.in.AuthTokensResult;
 
 public record LoginResponse(
         String accessToken,

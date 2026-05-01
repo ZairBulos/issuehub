@@ -1,7 +1,7 @@
 package com.issuehub.modules.auth.infrastructure.adapters.in.http.controller;
 
-import com.issuehub.modules.auth.application.dto.LoginCommand;
-import com.issuehub.modules.auth.application.dto.VerifyEmailCommand;
+import com.issuehub.modules.auth.application.ports.in.LoginCommand;
+import com.issuehub.modules.auth.application.ports.in.VerifyEmailCommand;
 import com.issuehub.modules.auth.application.ports.in.LoginUseCase;
 import com.issuehub.modules.auth.application.ports.in.RequestLoginUseCase;
 import com.issuehub.modules.auth.application.ports.in.VerifyEmailUseCase;

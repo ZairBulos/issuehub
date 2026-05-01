@@ -1,4 +1,4 @@
-package com.issuehub.modules.auth.application.dto;
+package com.issuehub.modules.auth.application.ports.in;
 
 import com.issuehub.modules.auth.domain.models.valueobjects.IpAddress;
 import com.issuehub.modules.auth.domain.models.valueobjects.LoginCode;

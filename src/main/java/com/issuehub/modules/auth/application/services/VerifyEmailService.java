@@ -1,6 +1,6 @@
 package com.issuehub.modules.auth.application.services;
 
-import com.issuehub.modules.auth.application.dto.VerifyEmailCommand;
+import com.issuehub.modules.auth.application.ports.in.VerifyEmailCommand;
 import com.issuehub.modules.auth.application.ports.in.VerifyEmailUseCase;
 import com.issuehub.modules.auth.application.ports.out.EmailVerificationRepositoryPort;
 import com.issuehub.shared.domain.events.EmailVerified;

@@ -1,8 +1,8 @@
 package com.issuehub.modules.auth.infrastructure.adapters.in.http.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.issuehub.modules.auth.application.dto.AuthTokensResult;
-import com.issuehub.modules.auth.application.dto.VerifyEmailCommand;
+import com.issuehub.modules.auth.application.ports.in.AuthTokensResult;
+import com.issuehub.modules.auth.application.ports.in.VerifyEmailCommand;
 import com.issuehub.modules.auth.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotVerifiedException;

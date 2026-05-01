@@ -1,6 +1,6 @@
 package com.issuehub.modules.auth.application.services;
 
-import com.issuehub.modules.auth.application.dto.LoginCommand;
+import com.issuehub.modules.auth.application.ports.in.LoginCommand;
 import com.issuehub.modules.auth.application.exceptions.AccountBlockedException;
 import com.issuehub.modules.auth.application.exceptions.AccountNotFoundException;
 import com.issuehub.modules.auth.application.exceptions.ActiveLoginCodeNotFoundException;
